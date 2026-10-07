@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-poppins), var(--font-montserrat), sans-serif;
+  }
+
+  body {
+    background-color: #F8FAFD;
+    color: #3B4A66;
+    overflow-x: hidden;
+  }
+}
+
+/* About Image & Decorative Orange Bands - Large, Wide & Prominent Layout */
+.about-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+}
+
+.about-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 380px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 88% 100%, 0 84%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 86%, 88% 100%, 0 84%);
+  box-shadow: 0 16px 40px rgba(11, 59, 143, 0.12);
+}
+
+@media (max-width: 480px) {
+  .about-image {
+    height: 280px;
+  }
+}
+
+@media (min-width: 640px) {
+  .about-image {
+    height: 460px;
+    border-radius: 24px 24px 0 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-image {
+    height: 520px;
+  }
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+}
+
+/* top-left orange band - tightly anchored behind image corner */
+.about-image-wrap::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -24px;
+  left: -24px;
+  width: 180px;
+  height: 220px;
+  background: linear-gradient(135deg, #F7820E, #FFD3A3 60%, transparent);
+  clip-path: polygon(60% 0, 100% 0, 40% 100%, 0 100%);
+  -webkit-clip-path: polygon(60% 0, 100% 0, 40% 100%, 0 100%);
+  opacity: 0.85;
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+/* bottom-right orange band - tightly anchored behind bottom cut */
+.about-image-wrap::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -24px;
+  right: -20px;
+  width: 180px;
+  height: 220px;
+  background: linear-gradient(315deg, #F7820E, #FFD3A3 60%, transparent);
+  clip-path: polygon(60% 0, 100% 0, 40% 100%, 0 100%);
+  -webkit-clip-path: polygon(60% 0, 100% 0, 40% 100%, 0 100%);
+  opacity: 0.75;
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .about-image-wrap::before,
+  .about-image-wrap::after {
+    display: none;
+  }
+}
+
+/* Immersion Section Chevron Navy Panel */
+@media (min-width: 1200px) {
+  .immersion-navy-panel {
+    clip-path: polygon(0 0, 88% 0, 74% 45%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 88% 0, 74% 45%, 100% 100%, 0 100%);
+  }
+}

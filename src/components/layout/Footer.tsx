@@ -1,0 +1,477 @@
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ArrowRight,
+  ChevronDown,
+  CheckCircle2,
+} from "lucide-react";
+
+export const Footer: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  // Accordion state for mobile view
+  const [openAccordions, setOpenAccordions] = useState<{ [key: string]: boolean }>({
+    quickLinks: false,
+    programs: false,
+    usefulLinks: false,
+  });
+
+  const toggleAccordion = (key: string) => {
+    setOpenAccordions((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg("");
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email.trim())) {
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+
+    setSubscribed(true);
+    setEmail("");
+  };
+
+  const QUICK_LINKS = [
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Programs", href: "/programs" },
+    { label: "Placement", href: "/placements" },
+    { label: "Our Students", href: "/#students" },
+    { label: "For Companies", href: "/industry" },
+    { label: "Contact Us", href: "/contact" },
+  ];
+
+  const PROGRAM_LINKS = [
+    { label: "Full Stack Development", href: "/programs" },
+    { label: "Data Science & AI", href: "/programs" },
+    { label: "Python Development", href: "/programs" },
+    { label: "Web Development", href: "/programs" },
+    { label: "Software Testing", href: "/programs" },
+    { label: "Cloud & DevOps", href: "/programs" },
+    { label: "More Programs", href: "/programs" },
+  ];
+
+  const USEFUL_LINKS = [
+    { label: "Placement Stories", href: "/placements" },
+    { label: "Industry Projects", href: "/industry" },
+    { label: "Our Partners", href: "/#ecosystem" },
+    { label: "Events & Workshops", href: "/#events" },
+    { label: "Blog / Resources", href: "/#resources" },
+    { label: "FAQs", href: "/#faq" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  ];
+
+  return (
+    <footer
+      className="relative w-full pt-[80px] lg:pt-[100px] text-white overflow-hidden font-montserrat"
+      style={{
+        background: "radial-gradient(circle at 70% 30%, #10295A 0%, #0A1F44 60%)",
+        backgroundColor: "#0A1F44",
+      }}
+      id="footer"
+    >
+      {/* ================= BACKGROUND DECORATIONS (z-0) ================= */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        {/* Top-Right: 2 Layered Curved Waves (SVG, ~350px wide) */}
+        <div className="absolute top-0 right-0 w-[150px] sm:w-[260px] lg:w-[380px] h-[130px] sm:h-[200px] lg:h-[280px] opacity-50 sm:opacity-100">
+          <svg className="w-full h-full" viewBox="0 0 380 280" fill="none" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="footer-tr-orange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#F7820E" />
+                <stop offset="100%" stopColor="#C85F00" />
+              </linearGradient>
+            </defs>
+            {/* Inner blue wave */}
+            <path
+              d="M380 0 L140 0 C220 70 210 180 380 240 Z"
+              fill="#1A4FA0"
+              fillOpacity="0.6"
+            />
+            {/* Outer orange wave */}
+            <path
+              d="M380 0 L210 0 C280 50 270 130 380 180 Z"
+              fill="url(#footer-tr-orange-grad)"
+              fillOpacity="0.9"
+            />
+          </svg>
+        </div>
+
+        {/* Bottom-Left: 2 Layered Curved Waves (~250px wide) */}
+        <div className="absolute bottom-0 left-0 w-[140px] sm:w-[220px] lg:w-[280px] h-[120px] sm:h-[170px] lg:h-[220px] opacity-50 sm:opacity-100">
+          <svg className="w-full h-full" viewBox="0 0 280 220" fill="none" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="footer-bl-orange-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#F7820E" />
+                <stop offset="100%" stopColor="#D26A08" />
+              </linearGradient>
+            </defs>
+            {/* Orange gradient wave */}
+            <path
+              d="M0 220 L0 50 C60 70 140 130 220 220 Z"
+              fill="url(#footer-bl-orange-grad)"
+              fillOpacity="0.85"
+            />
+            {/* Translucent white/grey wave above it */}
+            <path
+              d="M0 220 L0 100 C80 110 170 160 260 220 Z"
+              fill="#FFFFFF"
+              fillOpacity="0.08"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* ================= MAIN CONTAINER (max-width 1760px, padding 0 100px) ================= */}
+      <div className="relative z-10 w-full max-w-[1760px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-[100px]">
+        {/* ================= 5-COLUMN MAIN GRID ================= */}
+        <div className="grid grid-cols-1 md:grid-cols-2 min-[1400px]:grid-cols-[1.3fr_0.8fr_1fr_0.9fr_1.4fr] gap-12 lg:gap-10 xl:gap-[50px] items-start">
+          {/* ================= COLUMN 1: BRAND ================= */}
+          <div className="md:col-span-2 min-[1400px]:col-span-1 flex flex-col justify-start">
+            {/* Official WeGrow Skill Campus Logo from /logo.png */}
+            <Link href="/" className="inline-block group w-fit" id="footer-logo">
+              <div className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-[14px] inline-flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/logo.png"
+                  alt="WeGrow Skill Campus"
+                  className="h-[46px] sm:h-[56px] w-auto object-contain block"
+                />
+              </div>
+            </Link>
+
+            {/* Description: 21px, weight 400, line-height 1.6, rgba(255,255,255,0.9), max-width 430px, margin-top 30px */}
+            <p className="text-[17px] sm:text-[21px] font-normal leading-[1.6] text-white/90 max-w-[430px] mt-[30px]">
+              Bridging the gap between learning and employment through industry-focused training,
+              real projects and placement support.
+            </p>
+
+            {/* Social icons row (margin-top 34px, gap 26px): 56px circles with brand colors */}
+            <div className="flex items-center gap-[18px] sm:gap-[26px] mt-[34px]">
+              {/* LinkedIn: #0A66C2 */}
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WeGrow LinkedIn"
+                className="w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] rounded-full bg-[#0A66C2] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
+              >
+                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                </svg>
+              </a>
+
+              {/* Instagram: Gradient #F58529 → #DD2A7B → #8134AF */}
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WeGrow Instagram"
+                className="w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] rounded-full flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
+                style={{
+                  background: "linear-gradient(45deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%)",
+                }}
+              >
+                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+
+              {/* YouTube: #FF0000 */}
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WeGrow YouTube"
+                className="w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] rounded-full bg-[#FF0000] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
+              >
+                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+
+              {/* Facebook: #1877F2 */}
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WeGrow Facebook"
+                className="w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] rounded-full bg-[#1877F2] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
+              >
+                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+            </div>
+
+            {/* Tagline row (margin-top 40px): "Learn | Build | Grow | Get Placed" */}
+            <div className="flex flex-wrap items-center text-[16px] sm:text-[20px] font-semibold text-white mt-[40px]">
+              <span>Learn</span>
+              <span className="text-[#F7820E] mx-[14px] sm:mx-[20px] select-none">|</span>
+              <span>Build</span>
+              <span className="text-[#F7820E] mx-[14px] sm:mx-[20px] select-none">|</span>
+              <span>Grow</span>
+              <span className="text-[#F7820E] mx-[14px] sm:mx-[20px] select-none">|</span>
+              <span>Get Placed</span>
+            </div>
+          </div>
+
+          {/* ================= COLUMN 2: QUICK LINKS ================= */}
+          <div className="flex flex-col">
+            <button
+              onClick={() => toggleAccordion("quickLinks")}
+              className="flex items-center justify-between w-full text-left md:pointer-events-none"
+              aria-expanded={openAccordions.quickLinks}
+            >
+              <div>
+                <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
+                  Quick Links
+                </h3>
+                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[24px] sm:mb-[34px]" />
+              </div>
+              <ChevronDown
+                className={`w-6 h-6 text-[#F7820E] md:hidden transition-transform duration-200 ${
+                  openAccordions.quickLinks ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            <ul
+              className={`space-y-1 ${
+                openAccordions.quickLinks ? "block" : "hidden md:block"
+              }`}
+            >
+              {QUICK_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-[17px] sm:text-[20px] font-normal text-white/85 leading-[2.15] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ================= COLUMN 3: PROGRAMS ================= */}
+          <div className="flex flex-col">
+            <button
+              onClick={() => toggleAccordion("programs")}
+              className="flex items-center justify-between w-full text-left md:pointer-events-none"
+              aria-expanded={openAccordions.programs}
+            >
+              <div>
+                <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
+                  Programs
+                </h3>
+                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[24px] sm:mb-[34px]" />
+              </div>
+              <ChevronDown
+                className={`w-6 h-6 text-[#F7820E] md:hidden transition-transform duration-200 ${
+                  openAccordions.programs ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            <ul
+              className={`space-y-1 ${
+                openAccordions.programs ? "block" : "hidden md:block"
+              }`}
+            >
+              {PROGRAM_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-[17px] sm:text-[20px] font-normal text-white/85 leading-[2.15] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ================= COLUMN 4: USEFUL LINKS ================= */}
+          <div className="flex flex-col">
+            <button
+              onClick={() => toggleAccordion("usefulLinks")}
+              className="flex items-center justify-between w-full text-left md:pointer-events-none"
+              aria-expanded={openAccordions.usefulLinks}
+            >
+              <div>
+                <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
+                  Useful Links
+                </h3>
+                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[24px] sm:mb-[34px]" />
+              </div>
+              <ChevronDown
+                className={`w-6 h-6 text-[#F7820E] md:hidden transition-transform duration-200 ${
+                  openAccordions.usefulLinks ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            <ul
+              className={`space-y-1 ${
+                openAccordions.usefulLinks ? "block" : "hidden md:block"
+              }`}
+            >
+              {USEFUL_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-[17px] sm:text-[20px] font-normal text-white/85 leading-[2.15] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ================= COLUMN 5: CONTACT US ================= */}
+          {/* Thin vertical divider (1px rgba(255,255,255,0.1)) between col 4 and col 5 on wide displays */}
+          <div className="md:col-span-2 min-[1400px]:col-span-1 flex flex-col min-[1400px]:border-l min-[1400px]:border-white/10 min-[1400px]:pl-[50px]">
+            <div>
+              <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
+                Contact Us
+              </h3>
+              <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[34px]" />
+            </div>
+
+            {/* Contact list: orange icon 28px + white text 21px, gap 24px, row gap 22px */}
+            <div className="space-y-[22px]">
+              {/* MapPin */}
+              <div className="flex items-start gap-[24px]">
+                <MapPin className="w-[28px] h-[28px] text-[#F7820E] shrink-0 mt-1 stroke-[2]" />
+                <span className="text-[18px] sm:text-[21px] font-normal leading-[1.45] text-white">
+                  WeGrow Skill Campus, Sivakasi, Tamil Nadu, India
+                </span>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-center gap-[24px]">
+                <Phone className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
+                <a
+                  href="tel:+919344337331"
+                  className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors"
+                >
+                  +91 93443 37331
+                </a>
+              </div>
+
+              {/* Mail */}
+              <div className="flex items-center gap-[24px]">
+                <Mail className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
+                <a
+                  href="mailto:info@wegrow.in"
+                  className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors"
+                >
+                  info@wegrow.in
+                </a>
+              </div>
+
+              {/* Clock */}
+              <div className="flex items-center gap-[24px]">
+                <Clock className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
+                <span className="text-[18px] sm:text-[21px] font-normal text-white">
+                  Mon - Sat, 9:00 AM - 6:00 PM
+                </span>
+              </div>
+            </div>
+
+            {/* Stay Updated Card (inside column 5, margin-top 46px) */}
+            <div className="w-full bg-white/[0.04] border border-white/[0.08] rounded-[16px] p-[24px] sm:p-[28px_24px] mt-[46px]">
+              <h4 className="text-[20px] sm:text-[23px] font-bold text-white">Stay Updated</h4>
+              <p className="text-[15px] sm:text-[17px] text-white/80 leading-[1.55] mt-[8px]">
+                Get the latest updates on programs, events and placement opportunities.
+              </p>
+
+              {/* Email Subscription Form */}
+              <form onSubmit={handleSubscribe} className="mt-[22px]">
+                <div className="flex flex-col sm:flex-row h-auto sm:h-[60px] rounded-[8px] overflow-hidden bg-white shadow-sm">
+                  <div className="relative flex-1 flex items-center px-4 py-3 sm:py-0">
+                    <Mail className="w-5 h-5 text-[#0B3B8F] shrink-0 mr-3" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      className="w-full bg-transparent text-[#0A1F44] text-[16px] sm:text-[18px] placeholder:text-[#7A869E] focus:outline-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="h-[52px] sm:h-full bg-[#F7820E] hover:bg-[#E06F00] text-white font-montserrat font-bold text-[17px] sm:text-[18px] px-[24px] sm:px-[28px] flex items-center justify-center gap-2 transition-colors shrink-0"
+                  >
+                    <span>Subscribe</span>
+                    <ArrowRight className="w-5 h-5 stroke-[2.5]" />
+                  </button>
+                </div>
+
+                {errorMsg && (
+                  <p className="text-[#FF8080] text-sm mt-2 font-medium">{errorMsg}</p>
+                )}
+
+                {subscribed && (
+                  <div className="flex items-center gap-2 text-emerald-400 text-[15px] mt-2 font-medium">
+                    <CheckCircle2 className="w-4 h-4 shrink-0" />
+                    <span>Thanks for subscribing!</span>
+                  </div>
+                )}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= BOTTOM BAR ================= */}
+      <div className="relative z-10 w-full mt-[80px] border-t border-white/10 py-[34px] px-6 sm:px-12 lg:px-16 xl:px-[100px]">
+        <div className="max-w-[1760px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          {/* LEFT: Copyright */}
+          <p className="text-[16px] sm:text-[19px] text-white/85 font-normal">
+            &copy; {new Date().getFullYear()} WeGrow Skill Campus. All rights reserved.
+          </p>
+
+          {/* RIGHT: Privacy Policy | Terms & Conditions | Sitemap */}
+          <div className="flex flex-wrap items-center justify-center text-[16px] sm:text-[19px] font-normal text-white">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-[#F7820E] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-[#F7820E] mx-[14px] sm:mx-[20px] select-none">|</span>
+            <Link
+              href="/terms-and-conditions"
+              className="hover:text-[#F7820E] transition-colors"
+            >
+              Terms & Conditions
+            </Link>
+            <span className="text-[#F7820E] mx-[14px] sm:mx-[20px] select-none">|</span>
+            <Link
+              href="/sitemap.xml"
+              className="hover:text-[#F7820E] transition-colors"
+            >
+              Sitemap
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 52" width="260" height="52" fill="none">
+  <!-- WeGrow Icon: Dynamic upward growth mark -->
+  <g transform="translate(4, 4)">
+    <rect x="2" y="16" width="9" height="24" rx="4.5" fill="#123B78" />
+    <rect x="15" y="8" width="9" height="32" rx="4.5" fill="#0B2550" />
+    <rect x="28" y="0" width="9" height="40" rx="4.5" fill="#FF8A00" />
+    <circle cx="32.5" cy="4.5" r="3.5" fill="#F5A623" />
+  </g>
+  <!-- Text Brand -->
+  <text x="56" y="27" font-family="'Inter', sans-serif" font-size="22" font-weight="800" fill="#0B2550" letter-spacing="-0.5">We<tspan fill="#FF8A00">Grow</tspan></text>
+  <text x="56" y="42" font-family="'Inter', sans-serif" font-size="9.5" font-weight="600" fill="#64748B" letter-spacing="2.2">SKILL CAMPUS</text>
+</svg>
