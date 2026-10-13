@@ -77,14 +77,17 @@ export const Header: React.FC = () => {
           })}
         </nav>
 
-        <button
-          type="button"
+        <Link
+          href="/student-login"
+          prefetch
+          onPointerEnter={() => router.prefetch("/student-login")}
+          onFocus={() => router.prefetch("/student-login")}
           className="hidden 2xl:inline-flex items-center justify-center gap-2 rounded-xl bg-[#F7820E] px-5 py-3 font-montserrat text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(247,130,14,0.22)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E06F00] hover:shadow-[0_12px_24px_rgba(247,130,14,0.3)] focus:outline-none focus:ring-2 focus:ring-[#F7820E] focus:ring-offset-2 active:translate-y-0"
-          aria-label="Login button placeholder"
+          aria-label="Go to login page"
         >
           <LogIn className="h-[18px] w-[18px]" aria-hidden="true" />
           Login
-        </button>
+        </Link>
 
         {/* Mobile controls */}
         <div className="flex 2xl:hidden items-center gap-2">
@@ -133,14 +136,17 @@ export const Header: React.FC = () => {
                 </Link>
               );
             })}
-            <button
-              type="button"
+            <Link
+              href="/student-login"
+              prefetch
+              onPointerEnter={() => router.prefetch("/student-login")}
+              onFocus={() => router.prefetch("/student-login")}
               className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-[#F7820E] px-4 py-3.5 font-montserrat text-base font-bold text-white shadow-[0_8px_20px_rgba(247,130,14,0.2)] transition-all duration-200 hover:bg-[#E06F00] hover:shadow-[0_12px_24px_rgba(247,130,14,0.28)] focus:outline-none focus:ring-2 focus:ring-[#F7820E] focus:ring-offset-2 active:scale-[0.99]"
-              aria-label="Login button placeholder"
+              aria-label="Go to login page"
             >
               <LogIn className="h-5 w-5" aria-hidden="true" />
               Login
-            </button>
+            </Link>
           </nav>
 
           <div className="p-6 border-t border-[#E3E8F0] bg-[#F6F8FC]">
