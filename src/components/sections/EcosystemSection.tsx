@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { GraduationCap, Users, Building2, ArrowRight } from "lucide-react";
+import { GraduationCap, Building2, ArrowRight } from "lucide-react";
 
 interface EcosystemCardData {
   id: string;
@@ -35,23 +35,8 @@ const ECOSYSTEM_CARDS: EcosystemCardData[] = [
     icon: GraduationCap,
   },
   {
-    id: "b-school",
-    number: "02",
-    title: "WeGrow B School",
-    description: "Business and leadership development for individuals and organizations.",
-    linkText: "Explore B School",
-    linkHref: "/b-school",
-    image: "/ecosystem/b-school.jpg",
-    panelBg: "linear-gradient(180deg, #EEF3FC 0%, #FFFFFF 100%)",
-    accentColor: "#0B3B8F",
-    cornerAccent: "#8FB4F0",
-    iconBg: "#DCE6F8",
-    iconColor: "#0B3B8F",
-    icon: Users,
-  },
-  {
     id: "corporate-services",
-    number: "03",
+    number: "02",
     title: "Industry & Corporate Services",
     description: "Customized training, consulting and talent solutions for businesses.",
     linkText: "Explore Corporate Services",
@@ -86,14 +71,14 @@ export const EcosystemSection: React.FC = () => {
             {/* Heading: 64px desktop / 36px mobile, weight 800, letter-spacing -1px */}
             <h2 className="font-montserrat font-extrabold text-[36px] sm:text-[46px] md:text-[52px] lg:text-[56px] xl:text-[64px] tracking-[-1px] leading-[1.1]">
               <span className="text-[#0B3B8F]">One Vision. </span>
-              <span className="text-[#F7820E]">Three Focus Areas.</span>
+              <span className="text-[#F7820E]">Two Focus Areas.</span>
             </h2>
           </div>
 
           {/* RIGHT (35%): Paragraph + 56px x 3px orange line */}
           <div className="w-full lg:w-[35%] flex flex-col justify-end">
             <p className="font-poppins text-[16px] sm:text-[18px] font-medium leading-[1.6] text-[#3B4A66] max-w-[580px]">
-              Education. Business. Industry. A complete ecosystem for your growth. WeGrow empowers
+              Education and industry. A connected ecosystem for your growth. WeGrow empowers
               students, professionals and organizations with practical learning, real-world exposure
               and meaningful opportunities.
             </p>
@@ -102,8 +87,8 @@ export const EcosystemSection: React.FC = () => {
           </div>
         </div>
 
-        {/* ================= 3 CARDS (grid, 3 columns, full width) ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8 2xl:gap-10 w-full">
+        {/* ================= 2 CARDS (responsive grid) ================= */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:gap-8 2xl:gap-10 w-full">
           {ECOSYSTEM_CARDS.map((card, index) => {
             const IconComponent = card.icon;
 

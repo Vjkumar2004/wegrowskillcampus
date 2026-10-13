@@ -10,12 +10,28 @@ import {
   ArrowRight,
   ChevronDown,
   CheckCircle2,
+  ExternalLink,
 } from "lucide-react";
+
+const CAMPUS_LOCATIONS = {
+  sivakasi: {
+    label: "Sivakasi",
+    address: "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123",
+  },
+  srivilliputhur: {
+    label: "Srivilliputhur",
+    address: "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125",
+  },
+};
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [selectedCampus, setSelectedCampus] = useState<keyof typeof CAMPUS_LOCATIONS>("sivakasi");
+  const activeCampus = CAMPUS_LOCATIONS[selectedCampus];
+  const campusMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`WeGrow Skill Campus ${activeCampus.address}`)}`;
+  const campusEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(activeCampus.address)}&output=embed`;
 
   // Accordion state for mobile view
   const [openAccordions, setOpenAccordions] = useState<{ [key: string]: boolean }>({
@@ -49,29 +65,23 @@ export const Footer: React.FC = () => {
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Programs", href: "/programs" },
-    { label: "Placement", href: "/placements" },
-    { label: "Our Students", href: "/#students" },
-    { label: "For Companies", href: "/industry" },
+    { label: "Projects", href: "/projects" },
+    { label: "Events", href: "/events" },
+    { label: "Career Support", href: "/career-support" },
+    { label: "Global Exposure", href: "/global-exposure" },
     { label: "Contact Us", href: "/contact" },
   ];
 
   const PROGRAM_LINKS = [
-    { label: "Full Stack Development", href: "/programs" },
-    { label: "Data Science & AI", href: "/programs" },
-    { label: "Python Development", href: "/programs" },
-    { label: "Web Development", href: "/programs" },
-    { label: "Software Testing", href: "/programs" },
-    { label: "Cloud & DevOps", href: "/programs" },
-    { label: "More Programs", href: "/programs" },
+    { label: "AI Java Full Stack Development", href: "/programs/ai-java-full-stack" },
+    { label: "AI Python Full Stack Development", href: "/programs/ai-python-full-stack" },
+    { label: "Data Analytics", href: "/programs/data-analytics" },
+    { label: "Digital Marketing", href: "/programs/digital-marketing" },
+    { label: "View All Programs", href: "/programs" },
   ];
 
   const USEFUL_LINKS = [
-    { label: "Placement Stories", href: "/placements" },
-    { label: "Industry Projects", href: "/industry" },
-    { label: "Our Partners", href: "/#ecosystem" },
-    { label: "Events & Workshops", href: "/#events" },
-    { label: "Blog / Resources", href: "/#resources" },
-    { label: "FAQs", href: "/#faq" },
+    { label: "FAQs", href: "/faqs" },
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms & Conditions", href: "/terms-and-conditions" },
   ];
@@ -139,7 +149,7 @@ export const Footer: React.FC = () => {
       {/* ================= MAIN CONTAINER (max-width 1760px, padding 0 100px) ================= */}
       <div className="relative z-10 w-full max-w-[1760px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-[100px]">
         {/* ================= 5-COLUMN MAIN GRID ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 min-[1400px]:grid-cols-[1.3fr_0.8fr_1fr_0.9fr_1.4fr] gap-12 lg:gap-10 xl:gap-[50px] items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 min-[1400px]:grid-cols-[1.3fr_0.8fr_1fr_0.9fr_1.2fr_1.2fr] gap-12 lg:gap-10 xl:gap-[50px] items-start">
           {/* ================= COLUMN 1: BRAND ================= */}
           <div className="md:col-span-2 min-[1400px]:col-span-1 flex flex-col justify-start">
             {/* Official WeGrow Skill Campus Logo from /logo.png */}
@@ -164,7 +174,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-[18px] sm:gap-[26px] mt-[34px]">
               {/* LinkedIn: #0A66C2 */}
               <a
-                href="https://linkedin.com"
+                href="https://in.linkedin.com/company/wegrow-skill-campus"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WeGrow LinkedIn"
@@ -177,7 +187,7 @@ export const Footer: React.FC = () => {
 
               {/* Instagram: Gradient #F58529 → #DD2A7B → #8134AF */}
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/wegrowskillcampus/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WeGrow Instagram"
@@ -193,7 +203,7 @@ export const Footer: React.FC = () => {
 
               {/* YouTube: #FF0000 */}
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@wegrowskillcampus"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WeGrow YouTube"
@@ -206,7 +216,7 @@ export const Footer: React.FC = () => {
 
               {/* Facebook: #1877F2 */}
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/wegrowskillcampus"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WeGrow Facebook"
@@ -343,7 +353,7 @@ export const Footer: React.FC = () => {
 
           {/* ================= COLUMN 5: CONTACT US ================= */}
           {/* Thin vertical divider (1px rgba(255,255,255,0.1)) between col 4 and col 5 on wide displays */}
-          <div className="md:col-span-2 min-[1400px]:col-span-1 flex flex-col min-[1400px]:border-l min-[1400px]:border-white/10 min-[1400px]:pl-[50px]">
+          <div className="md:col-span-2 min-[1400px]:col-span-2 flex flex-col min-[1400px]:border-l min-[1400px]:border-white/10 min-[1400px]:pl-[50px]">
             <div>
               <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
                 Contact Us
@@ -351,35 +361,62 @@ export const Footer: React.FC = () => {
               <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[34px]" />
             </div>
 
-            {/* Contact list: orange icon 28px + white text 21px, gap 24px, row gap 22px */}
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-6">
+            {/* Contact details and selected branch */}
             <div className="space-y-[22px]">
-              {/* MapPin */}
-              <div className="flex items-start gap-[24px]">
-                <MapPin className="w-[28px] h-[28px] text-[#F7820E] shrink-0 mt-1 stroke-[2]" />
-                <span className="text-[18px] sm:text-[21px] font-normal leading-[1.45] text-white">
-                  WeGrow Skill Campus, Sivakasi, Tamil Nadu, India
-                </span>
+              {/* Select a campus and open its map location */}
+              <div className="flex items-start gap-[18px] sm:gap-[24px]">
+                <MapPin className="mt-1 h-[28px] w-[28px] shrink-0 stroke-[2] text-[#F7820E]" aria-hidden="true" />
+                <div className="min-w-0 flex-1">
+                  <div className="mb-4 grid grid-cols-2 gap-2 rounded-xl bg-white/10 p-1" role="group" aria-label="Choose a campus location">
+                    {(Object.keys(CAMPUS_LOCATIONS) as Array<keyof typeof CAMPUS_LOCATIONS>).map((campusKey) => {
+                      const campus = CAMPUS_LOCATIONS[campusKey];
+                      const isSelected = selectedCampus === campusKey;
+                      return (
+                        <button
+                          key={campusKey}
+                          type="button"
+                          onClick={() => setSelectedCampus(campusKey)}
+                          aria-pressed={isSelected}
+                          className={`rounded-lg px-3 py-2 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-[#F7820E] ${isSelected ? "bg-[#F7820E] text-white shadow" : "text-white/80 hover:bg-white/10 hover:text-white"}`}
+                        >
+                          {campus.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <p aria-live="polite" className="text-base font-normal leading-relaxed text-white sm:text-lg">
+                    {activeCampus.address}
+                  </p>
+                  <a
+                    href={campusMapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 rounded-lg border border-[#F7820E]/60 bg-[#F7820E]/10 px-3 py-2 text-sm font-semibold text-orange-100 transition-colors hover:bg-[#F7820E]/20 focus:outline-none focus:ring-2 focus:ring-[#F7820E]"
+                  >
+                    View {activeCampus.label} on Google Maps
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                </div>
               </div>
 
               {/* Phone */}
-              <div className="flex items-center gap-[24px]">
+              <div className="flex items-start gap-[24px]">
                 <Phone className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
-                <a
-                  href="tel:+919344337331"
-                  className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors"
-                >
-                  +91 93443 37331
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a href="tel:+919344337331" className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors">+91 93443 37331</a>
+                  <a href="tel:+919363337331" className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors">+91 93633 37331</a>
+                </div>
               </div>
 
               {/* Mail */}
               <div className="flex items-center gap-[24px]">
                 <Mail className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
                 <a
-                  href="mailto:info@wegrow.in"
+                  href="mailto:enquiry@wegrowcampus.in"
                   className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors"
                 >
-                  info@wegrow.in
+                  enquiry@wegrowcampus.in
                 </a>
               </div>
 
@@ -387,9 +424,33 @@ export const Footer: React.FC = () => {
               <div className="flex items-center gap-[24px]">
                 <Clock className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
                 <span className="text-[18px] sm:text-[21px] font-normal text-white">
-                  Mon - Sat, 9:00 AM - 6:00 PM
+                  Classes: Mon - Sat, 9:00 AM - 7:00 PM
                 </span>
               </div>
+            </div>
+
+            <div className="min-w-0">
+              <h4 className="mb-4 text-lg font-bold text-white">Find Us</h4>
+              <div className="overflow-hidden rounded-xl border border-white/20 bg-white/10">
+                <iframe
+                  key={selectedCampus}
+                  title={`${activeCampus.label} campus map`}
+                  src={campusEmbedUrl}
+                  className="h-64 w-full border-0 sm:h-72"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+              <a
+                href={campusMapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-bold text-[#0B3B8F] transition-colors hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-[#F7820E]"
+              >
+                Open in Maps <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
             </div>
 
             {/* Stay Updated Card (inside column 5, margin-top 46px) */}

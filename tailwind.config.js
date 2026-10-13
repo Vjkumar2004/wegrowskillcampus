@@ -17,6 +17,7 @@ module.exports = {
           bodyText: "#3B4A66",
           navLink: "#1E3A6E",
           divider: "#E3E8F0",
+          bg: "#F6F8FC",
           pageBg: "#F6F8FC",
           white: "#FFFFFF",
           blue: "#0B3B8F",
@@ -32,6 +33,7 @@ module.exports = {
       },
       boxShadow: {
         navbar: "0 2px 15px rgba(11, 59, 143, 0.06)",
+        subtle: "0 8px 24px rgba(11, 59, 143, 0.06)",
         card: "0 10px 30px rgba(11, 59, 143, 0.10)",
         elevated: "0 15px 35px rgba(11, 59, 143, 0.12)",
       },

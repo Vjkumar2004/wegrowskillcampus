@@ -77,21 +77,6 @@ export const ECOSYSTEM_CARDS: EcosystemCardItem[] = [
     ctaHref: "/skill-campus",
   },
   {
-    id: "b-school",
-    badge: "Management Division",
-    title: "WeGrow B School",
-    subtitle: "Business and leadership development",
-    description:
-      "Empowering future leaders with analytical thinking, managerial acumen, business communication, and cross-functional project execution.",
-    keyPoints: [
-      "Strategic business case analyses",
-      "Executive communication & leadership",
-      "Corporate market dynamics & operations",
-    ],
-    ctaText: "Explore B School",
-    ctaHref: "/b-school",
-  },
-  {
     id: "industry-services",
     badge: "Enterprise Solutions",
     title: "Industry & Corporate Services",
@@ -197,7 +182,7 @@ export const SAMPLE_TESTIMONIALS: TestimonialItem[] = [
       "The bridge between academic theory and enterprise expectations was made effortless through realistic sprint workflows and continuous mentor feedback.",
     author: "Alumnus Perspective (Sample)",
     role: "Business Analyst Track",
-    batchOrTrack: "B-School Cohort",
+    batchOrTrack: "Business Analysis Cohort",
     isPlaceholder: true,
   },
   {

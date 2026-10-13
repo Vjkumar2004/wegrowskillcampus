@@ -28,7 +28,7 @@ export const PAGE_SEO: Record<string, SeoConfig> = {
   about: {
     title: "About Us | WeGrow Skill Campus",
     description:
-      "Learn about WeGrow Skill Campus, our vision to bridge academic education and industry expectations, and our holistic learning methodology.",
+      "Learn about WeGrow Skill Campus, our vision, mission, and values supporting practical learning and student success.",
     canonicalUrl: "/about",
     ogType: "website",
     ogImage: "/images/og-image.jpg",
@@ -41,14 +41,6 @@ export const PAGE_SEO: Record<string, SeoConfig> = {
     ogType: "website",
     ogImage: "/images/og-image.jpg",
   },
-  bSchool: {
-    title: "B School | Business Leadership & Executive Skills",
-    description:
-      "Management education focusing on business acumen, managerial problem solving, executive presentation, and industry case studies.",
-    canonicalUrl: "/b-school",
-    ogType: "website",
-    ogImage: "/images/og-image.jpg",
-  },
   industry: {
     title: "Industry & Corporate Services | Talent & Training Solutions",
     description:
@@ -58,17 +50,17 @@ export const PAGE_SEO: Record<string, SeoConfig> = {
     ogImage: "/images/og-image.jpg",
   },
   placements: {
-    title: "Placements & Career Success | WeGrow Skill Campus",
+    title: "Career Support | WeGrow Skill Campus",
     description:
-      "Structured career roadmap from interview preparation and mock assessments to recruitment drives and placement support.",
+      "Explore resume, interview, communication, and career-planning support at WeGrow Skill Campus.",
     canonicalUrl: "/placements",
     ogType: "website",
     ogImage: "/images/og-image.jpg",
   },
   globalExposure: {
-    title: "Global Exposure | International Opportunities & Standards",
+    title: "Global Exposure | WeGrow Skill Campus",
     description:
-      "Connected to the world of work through international curriculum standards, cross-border best practices, and global exposure programs.",
+      "Explore global industry awareness, international professional perspectives, and emerging technology trends.",
     canonicalUrl: "/global-exposure",
     ogType: "website",
     ogImage: "/images/og-image.jpg",
@@ -86,6 +78,30 @@ export const PAGE_SEO: Record<string, SeoConfig> = {
     description:
       "Get in touch with admissions, corporate partnerships, and campus counselling at WeGrow Skill Campus.",
     canonicalUrl: "/contact",
+    ogType: "website",
+    ogImage: "/images/og-image.jpg",
+  },
+  projects: {
+    title: "Projects & Practical Learning | WeGrow Skill Campus",
+    description:
+      "Explore project-based learning ideas and the skills learners can develop at WeGrow Skill Campus.",
+    canonicalUrl: "/projects",
+    ogType: "website",
+    ogImage: "/images/og-image.jpg",
+  },
+  events: {
+    title: "Workshops & Events | WeGrow Skill Campus",
+    description:
+      "Learn about workshops, seminars, and campus activities at WeGrow Skill Campus.",
+    canonicalUrl: "/events",
+    ogType: "website",
+    ogImage: "/images/og-image.jpg",
+  },
+  faqs: {
+    title: "Frequently Asked Questions | WeGrow Skill Campus",
+    description:
+      "Find answers about courses, eligibility, duration, fees, certificates, career support, and admissions.",
+    canonicalUrl: "/faqs",
     ogType: "website",
     ogImage: "/images/og-image.jpg",
   },

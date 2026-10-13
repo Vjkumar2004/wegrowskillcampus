@@ -4,7 +4,7 @@ export interface ContactEnquiryPayload {
   fullName: string;
   email: string;
   phone: string;
-  interestArea: "SkillCampus" | "BSchool" | "IndustryServices" | "General";
+  interestArea: "SkillCampus" | "IndustryServices" | "General";
   message: string;
 }
 

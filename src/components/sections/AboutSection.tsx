@@ -16,9 +16,9 @@ export const AboutSection: React.FC = () => {
       {/* FULL WIDTH CONTAINER: No max-w-1440 restriction, matching Navbar and Hero full width */}
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         {/* 3 Columns Layout: Left text (38%) | Center image (44% - wider & prominent) | Right stats card (18% - compact) */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-6 xl:gap-8 2xl:gap-12 w-full">
+        <div className="grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:grid-cols-[0.95fr_1.15fr_0.72fr] xl:gap-8 2xl:gap-12">
           {/* ================= LEFT COLUMN (Text) - 38% ================= */}
-          <div className="w-full lg:w-[38%] xl:w-[37%] 2xl:w-[36%] flex flex-col justify-center">
+          <div className="flex w-full flex-col justify-center">
             {/* 1. Eyebrow label: 48px wide x 3px orange line + text "ABOUT WEGROW" */}
             <div className="flex items-center gap-[20px] mb-4">
               <span className="w-[48px] h-[3px] bg-[#F7820E] rounded-full shrink-0" aria-hidden="true" />
@@ -112,7 +112,7 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* ================= CENTER COLUMN (Image) - 44% (Expanded & Prominent) ================= */}
-          <div className="w-full md:w-[60%] lg:w-[42%] xl:w-[45%] 2xl:w-[46%] flex justify-center my-6 lg:my-0">
+          <div className="flex w-full justify-center lg:col-start-2 lg:row-start-1 xl:col-start-2 xl:row-start-1">
             <div className="about-image-wrap">
               <div className="about-image">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -125,7 +125,7 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* ================= RIGHT COLUMN (Stats Card) - 18% (Compact Box) ================= */}
-          <div className="w-full md:w-[40%] lg:w-[20%] xl:w-[18%] 2xl:w-[18%] flex justify-center lg:justify-end shrink-0">
+          <div className="flex w-full justify-center lg:col-span-2 lg:mx-auto lg:max-w-2xl xl:col-span-1 xl:col-start-3 xl:row-start-1 xl:mx-0 xl:max-w-none xl:justify-end">
             <div className="w-full max-w-[320px] sm:max-w-[340px] lg:max-w-[260px] xl:max-w-[270px] 2xl:max-w-[290px] bg-white rounded-[18px] p-[20px] sm:p-[24px] lg:p-[18px] xl:p-[20px] 2xl:p-[24px] shadow-[0_10px_35px_rgba(11,59,143,0.08)] border border-[#EEF1F6]">
               {/* Stat 1: 📖 15+ Programs Designed */}
               <div className="flex items-center gap-[16px] xl:gap-[16px] 2xl:gap-[20px]">

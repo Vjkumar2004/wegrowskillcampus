@@ -1,12 +1,29 @@
 "use client";
 
 import React, { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react";
-import { COMPANY_INFO } from "@/constants/company";
+import Link from "next/link";
+import { MapPin, Phone, Globe, Send, CheckCircle2 } from "lucide-react";
+import { COURSES } from "@/constants/courses";
 import Container from "@/components/common/Container";
-import Badge from "@/components/common/Badge";
 import Button from "@/components/common/Button";
+import PageHero from "@/components/common/PageHero";
 import { submitContactEnquiry, ContactEnquiryPayload } from "@/services/contact/contactService";
+
+const contactNumbers = [
+  { display: "+91 93443 37331", tel: "+919344337331", whatsapp: "919344337331" },
+  { display: "+91 93633 37331", tel: "+919363337331", whatsapp: "919363337331" },
+];
+
+const campuses = [
+  {
+    name: "Sivakasi — Thiruthangal Road",
+    address: "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123",
+  },
+  {
+    name: "Srivilliputtur",
+    address: "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125",
+  },
+];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<ContactEnquiryPayload>({
@@ -19,6 +36,9 @@ export default function ContactPage() {
 
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [courseOfInterest, setCourseOfInterest] = useState("");
+  const [preferredCampus, setPreferredCampus] = useState("");
+  const [preferredMode, setPreferredMode] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -35,7 +55,13 @@ export default function ContactPage() {
     setFeedbackMessage("");
 
     try {
-      await submitContactEnquiry(formData);
+      const enquiryMessage = [
+        formData.message,
+        courseOfInterest && `Course of interest: ${courseOfInterest}`,
+        preferredCampus && `Preferred campus: ${preferredCampus}`,
+        preferredMode && `Preferred learning mode: ${preferredMode}`,
+      ].filter(Boolean).join("\n\n");
+      await submitContactEnquiry({ ...formData, message: enquiryMessage });
       setStatus("success");
       setFeedbackMessage("Thank you for your enquiry. Our admissions team will reach out shortly.");
       setFormData({
@@ -45,6 +71,9 @@ export default function ContactPage() {
         interestArea: "SkillCampus",
         message: "",
       });
+      setCourseOfInterest("");
+      setPreferredCampus("");
+      setPreferredMode("");
     } catch (err: unknown) {
       // In early frontend foundation, show meaningful message without crashing
       setStatus("error");
@@ -57,77 +86,63 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="py-16 sm:py-20 bg-brand-bg">
+    <div className="pb-16 sm:pb-20 bg-brand-bg">
+      <PageHero
+        eyebrow="Contact WeGrow"
+        title="Let’s Talk About Your Learning Goals"
+        description="Have questions about courses, eligibility, duration, fees, or enrolment? Our team can help you understand the available options and what to confirm."
+        image="/about-section.png"
+        imageAlt="WeGrow Skill Campus building"
+        imagePosition="object-center"
+      />
       <Container>
-        <div className="max-w-3xl mb-12">
-          <Badge variant="brand" className="mb-3">
-            Get In Touch
-          </Badge>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-brand-navy tracking-tight mb-4">
-            Contact WeGrow Skill Campus
-          </h1>
-          <p className="text-lg text-brand-textSecondary leading-relaxed">
-            Have questions regarding admissions, technical curriculum pathways, or corporate
-            partnerships? Reach out to our campus office.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid w-full grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-8">
           {/* Contact Details Column */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white p-6 sm:p-8 rounded-lg border border-brand-border shadow-card space-y-6">
-              <h2 className="text-xl font-bold text-brand-navy border-b border-slate-100 pb-4">
-                Campus Information
-              </h2>
-
-              <div className="space-y-5 text-sm text-brand-textPrimary">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" aria-hidden="true" />
-                  <div>
-                    <span className="font-semibold block text-slate-800">Campus Address</span>
-                    <span className="text-xs text-brand-textSecondary leading-relaxed mt-1 block">
-                      {COMPANY_INFO.addressPlaceholder}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <Phone className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" aria-hidden="true" />
-                  <div>
-                    <span className="font-semibold block text-slate-800">Direct Contact Line</span>
-                    <span className="text-xs text-brand-textSecondary mt-1 block">
-                      {COMPANY_INFO.phonePlaceholder}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <Mail className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" aria-hidden="true" />
-                  <div>
-                    <span className="font-semibold block text-slate-800">Enquiries Email</span>
-                    <span className="text-xs text-brand-textSecondary mt-1 block">
-                      {COMPANY_INFO.emailPlaceholder}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <Clock className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" aria-hidden="true" />
-                  <div>
-                    <span className="font-semibold block text-slate-800">Campus Working Hours</span>
-                    <span className="text-xs text-brand-textSecondary mt-1 block">
-                      {COMPANY_INFO.workingHours}
-                    </span>
-                  </div>
+          <div className="space-y-6 lg:col-span-5">
+            <div className="relative space-y-5 overflow-hidden rounded-[26px] border border-brand-border bg-white p-6 shadow-card sm:p-8">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-orange to-amber-300" aria-hidden="true" />
+              <div>
+                <h2 className="text-xl font-bold text-brand-navy">Call or WhatsApp</h2>
+                <p className="mt-1 text-sm text-brand-textSecondary">Contact our team to find the right course for you.</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                  {contactNumbers.map((number) => (
+                    <div key={number.tel} className="rounded-xl bg-orange-50 p-3">
+                      <a href={`tel:${number.tel}`} className="flex items-center gap-3 px-1 py-1 font-bold text-brand-navy transition hover:text-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-orange text-white"><Phone className="h-5 w-5" aria-hidden="true" /></span>
+                        <span>{number.display}</span>
+                      </a>
+                      <a href={`https://wa.me/${number.whatsapp}`} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center rounded-lg border border-emerald-200 bg-white px-3 py-1.5 text-xs font-bold text-emerald-800 transition hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                        WhatsApp
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
+
+              <div className="border-t border-slate-100 pt-5">
+                <h2 className="mb-4 text-xl font-bold text-brand-navy">Visit Our Campuses</h2>
+                <div className="space-y-3">
+                  {campuses.map((campus) => (
+                    <article key={campus.name} className="rounded-2xl border border-slate-100 bg-brand-bg/70 p-4 text-sm">
+                      <h3 className="mb-2 font-bold text-brand-navy">{campus.name}</h3>
+                      <p className="flex gap-2 leading-6 text-brand-textSecondary"><MapPin className="mt-1 h-4 w-4 shrink-0 text-brand-orange" aria-hidden="true" />{campus.address}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <a href="https://www.wegrowcampus.in" target="_blank" rel="noreferrer" className="flex items-center gap-3 border-t border-slate-100 pt-5 font-bold text-brand-blue hover:text-brand-orange">
+                <Globe className="h-5 w-5 text-brand-orange" aria-hidden="true" />
+                www.wegrowcampus.in
+              </a>
             </div>
           </div>
 
           {/* Enquiry Form Column */}
           <div className="lg:col-span-7">
-            <div className="bg-white p-6 sm:p-8 rounded-lg border border-brand-border shadow-card">
-              <h2 className="text-xl font-bold text-brand-navy mb-2">Send an Enquiry</h2>
+            <div className="relative rounded-[26px] border border-brand-border bg-white p-6 shadow-card sm:p-9">
+              <div className="absolute inset-x-0 top-0 h-1 rounded-t-[26px] bg-gradient-to-r from-brand-orange to-amber-300" aria-hidden="true" />
+              <h2 className="mb-2 text-2xl font-extrabold text-brand-navy">Send an Enquiry</h2>
               <p className="text-xs text-slate-500 mb-6">
                 Fill in the details below and an academic advisor will connect with you.
               </p>
@@ -200,22 +215,34 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="interestArea" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
-                    Area of Interest *
-                  </label>
-                  <select
-                    id="interestArea"
-                    name="interestArea"
-                    value={formData.interestArea}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue bg-white"
-                  >
-                    <option value="SkillCampus">WeGrow Skill Campus (Technical)</option>
-                    <option value="BSchool">WeGrow B School (Management)</option>
-                    <option value="IndustryServices">Industry & Corporate Partnership</option>
-                    <option value="General">General Enquiry / Counseling</option>
-                  </select>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="courseOfInterest" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">Course of Interest</label>
+                    <select id="courseOfInterest" value={courseOfInterest} onChange={(event) => setCourseOfInterest(event.target.value)} className="w-full px-4 py-2.5 rounded border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue bg-white">
+                      <option value="">Select a course (optional)</option>
+                      {COURSES.map((course) => <option key={course.id}>{course.title}</option>)}
+                      <option>Other / Not sure yet</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="preferredCampus" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">Preferred Campus</label>
+                    <select id="preferredCampus" value={preferredCampus} onChange={(event) => setPreferredCampus(event.target.value)} className="w-full px-4 py-2.5 rounded border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue bg-white">
+                      <option value="">Select a campus (optional)</option>
+                      <option>Sivakasi — Thiruthangal Road</option>
+                      <option>Srivilliputtur</option>
+                      <option>No preference</option>
+                    </select>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="preferredMode" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">Preferred Learning Mode</label>
+                    <select id="preferredMode" value={preferredMode} onChange={(event) => setPreferredMode(event.target.value)} className="w-full px-4 py-2.5 rounded border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue bg-white">
+                      <option value="">Select a mode (optional; availability to be confirmed)</option>
+                      <option>Online</option>
+                      <option>Offline</option>
+                      <option>Hybrid</option>
+                      <option>Open to available options</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
@@ -233,6 +260,10 @@ export default function ContactPage() {
                     className="w-full px-4 py-2.5 rounded border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue"
                   />
                 </div>
+
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  By submitting this form, you acknowledge that your information will be handled according to our <Link href="/privacy-policy" className="text-brand-blue underline">Privacy Policy</Link>.
+                </p>
 
                 <div className="pt-2">
                   <Button

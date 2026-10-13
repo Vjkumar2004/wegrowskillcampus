@@ -6,7 +6,7 @@ Official web platform for **WeGrow Skill Campus** — bridging the gap between e
 
 - **Hero Canvas**: Engaging dynamic layout with practical stats, brand typography, and responsive CTA pathways.
 - **About WeGrow**: Highlighting the practical learning philosophy with interactive feature highlights.
-- **Our Ecosystem**: Dedicated overview covering Skill Campus, B-School, and Corporate Services.
+- **Our Ecosystem**: Dedicated overview covering Skill Campus and Corporate Services.
 - **How We Make A Difference**: Interactive card showcase of career guidance, mentorship, live project exposure, and corporate readiness.
 - **Applied Industry Immersion**: Dedicated dark theme immersion showcase highlighting live capstones and partner connections.
 - **Placement Journey**: 5-step milestone roadmap guiding students from foundational training to corporate placement.
