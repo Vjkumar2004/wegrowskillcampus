@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Menu, X, ArrowRight } from "lucide-react";
-import { MAIN_NAVIGATION, PRIMARY_CTA } from "@/constants/navigation";
+import { Search, Menu, X } from "lucide-react";
+import { MAIN_NAVIGATION } from "@/constants/navigation";
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,6 +70,14 @@ export const Header: React.FC = () => {
 
         {/* Right: Search icon (navy) + "Explore Programs →" button */}
         <div className="hidden xl:flex items-center gap-4 2xl:gap-6 shrink-0">
+          <Link
+            href="/login"
+            className={`ml-5 2xl:ml-8 text-[15px] font-semibold font-montserrat transition-colors hover:text-[#F7820E] ${pathname === "/login" ? "text-[#0B3B8F]" : "text-[#1E3A6E]"}`}
+            aria-current={pathname === "/login" ? "page" : undefined}
+          >
+            Login
+          </Link>
+
           <button
             type="button"
             className="w-10 h-10 rounded-full flex items-center justify-center text-[#0B3B8F] hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0B3B8F]"
@@ -78,14 +86,6 @@ export const Header: React.FC = () => {
             <Search className="w-5 h-5 text-[#0B3B8F]" strokeWidth={2.2} aria-hidden="true" />
           </button>
 
-          <Link
-            href={PRIMARY_CTA.href}
-            className="inline-flex items-center justify-center bg-[#F7820E] hover:bg-[#E06F00] text-white text-[16px] 2xl:text-[18px] font-bold font-montserrat px-[22px] 2xl:px-[24px] py-[14px] 2xl:py-[16px] rounded-[10px] transition-all duration-200 hover:-translate-y-0.5 shadow-sm whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-[#F7820E] focus:ring-offset-2"
-            id="navbar-explore-programs-btn"
-          >
-            <span>Explore Programs</span>
-            <ArrowRight className="w-5 h-5 ml-2 stroke-[2.5]" aria-hidden="true" />
-          </Link>
         </div>
 
         {/* Mobile controls */}
@@ -140,16 +140,17 @@ export const Header: React.FC = () => {
                 </Link>
               );
             })}
+            <Link
+              href="/login"
+              className={`flex items-center justify-between px-4 py-3 rounded text-[16px] font-montserrat ${pathname === "/login" ? "bg-blue-50/70 text-[#0B3B8F] font-bold border-l-4 border-[#F7820E]" : "text-[#1E3A6E] font-medium hover:bg-slate-50 hover:text-[#0B3B8F]"}`}
+              aria-current={pathname === "/login" ? "page" : undefined}
+            >
+              Login
+              {pathname === "/login" && <span className="w-2 h-2 rounded-full bg-[#F7820E]" />}
+            </Link>
           </nav>
 
-          <div className="p-6 border-t border-[#E3E8F0] bg-[#F6F8FC] space-y-3">
-            <Link
-              href={PRIMARY_CTA.href}
-              className="flex items-center justify-center w-full bg-[#F7820E] hover:bg-[#E06F00] text-white text-[18px] font-bold font-montserrat py-[18px] px-6 rounded-[10px] transition-all"
-            >
-              <span>Explore Programs</span>
-              <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
-            </Link>
+          <div className="p-6 border-t border-[#E3E8F0] bg-[#F6F8FC]">
             <p className="text-center text-xs text-[#3B4A66] font-medium">
               WeGrow Skill Campus • Bridging Education & Industry
             </p>

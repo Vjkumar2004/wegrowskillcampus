@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 import { SITE_METADATA } from "@/constants/seo";
 
 const montserrat = Montserrat({
@@ -64,11 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${poppins.variable}`}>
       <body className="min-h-screen flex flex-col bg-[#F6F8FC] text-[#3B4A66] font-poppins antialiased selection:bg-[#F7820E] selection:text-white">
-        <Header />
-        <main id="main-content" className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer
-      className="relative w-full pt-[80px] lg:pt-[100px] text-white overflow-hidden font-montserrat"
+      className="relative w-full shrink-0 overflow-hidden pt-14 text-white font-montserrat sm:pt-16 lg:pt-20"
       style={{
         background: "radial-gradient(circle at 70% 30%, #10295A 0%, #0A1F44 60%)",
         backgroundColor: "#0A1F44",
@@ -139,9 +139,9 @@ export const Footer: React.FC = () => {
       {/* ================= MAIN CONTAINER (max-width 1760px, padding 0 100px) ================= */}
       <div className="relative z-10 w-full max-w-[1760px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-[100px]">
         {/* ================= 5-COLUMN MAIN GRID ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 min-[1400px]:grid-cols-[1.3fr_0.8fr_1fr_0.9fr_1.4fr] gap-12 lg:gap-10 xl:gap-[50px] items-start">
+        <div className="grid grid-cols-1 items-start gap-x-8 gap-y-10 sm:grid-cols-2 lg:gap-x-10 lg:gap-y-12 min-[1400px]:grid-cols-[1.3fr_0.8fr_1fr_0.9fr_1.4fr] min-[1400px]:gap-x-[50px]">
           {/* ================= COLUMN 1: BRAND ================= */}
-          <div className="md:col-span-2 min-[1400px]:col-span-1 flex flex-col justify-start">
+          <div className="flex w-full flex-col justify-start sm:col-span-2 min-[1400px]:col-span-1">
             {/* Official WeGrow Skill Campus Logo from /logo.png */}
             <Link href="/" className="inline-block group w-fit" id="footer-logo">
               <div className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-[14px] inline-flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
@@ -231,7 +231,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ================= COLUMN 2: QUICK LINKS ================= */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <button
               onClick={() => toggleAccordion("quickLinks")}
               className="flex items-center justify-between w-full text-left md:pointer-events-none"
@@ -268,7 +268,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ================= COLUMN 3: PROGRAMS ================= */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <button
               onClick={() => toggleAccordion("programs")}
               className="flex items-center justify-between w-full text-left md:pointer-events-none"
@@ -305,7 +305,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ================= COLUMN 4: USEFUL LINKS ================= */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <button
               onClick={() => toggleAccordion("usefulLinks")}
               className="flex items-center justify-between w-full text-left md:pointer-events-none"
@@ -343,7 +343,7 @@ export const Footer: React.FC = () => {
 
           {/* ================= COLUMN 5: CONTACT US ================= */}
           {/* Thin vertical divider (1px rgba(255,255,255,0.1)) between col 4 and col 5 on wide displays */}
-          <div className="md:col-span-2 min-[1400px]:col-span-1 flex flex-col min-[1400px]:border-l min-[1400px]:border-white/10 min-[1400px]:pl-[50px]">
+          <div className="flex w-full flex-col sm:col-span-2 min-[1400px]:col-span-1 min-[1400px]:border-l min-[1400px]:border-white/10 min-[1400px]:pl-[50px]">
             <div>
               <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
                 Contact Us
@@ -438,15 +438,15 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* ================= BOTTOM BAR ================= */}
-      <div className="relative z-10 w-full mt-[80px] border-t border-white/10 py-[34px] px-6 sm:px-12 lg:px-16 xl:px-[100px]">
+      <div className="relative z-10 mt-14 w-full border-t border-white/10 px-5 py-6 sm:mt-16 sm:px-10 sm:py-7 lg:mt-20 lg:px-16 xl:px-[100px]">
         <div className="max-w-[1760px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           {/* LEFT: Copyright */}
-          <p className="text-[16px] sm:text-[19px] text-white/85 font-normal">
+          <p className="text-sm font-normal text-white/85 sm:text-base">
             &copy; {new Date().getFullYear()} WeGrow Skill Campus. All rights reserved.
           </p>
 
           {/* RIGHT: Privacy Policy | Terms & Conditions | Sitemap */}
-          <div className="flex flex-wrap items-center justify-center text-[16px] sm:text-[19px] font-normal text-white">
+          <div className="flex flex-wrap items-center justify-center text-sm font-normal text-white sm:text-base">
             <Link
               href="/privacy-policy"
               className="hover:text-[#F7820E] transition-colors"

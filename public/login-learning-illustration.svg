@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" fill="none">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B3B8F"/>
+      <stop offset="100%" stop-color="#072359"/>
+    </linearGradient>
+
+    <!-- Orange Gradient -->
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9E3D"/>
+      <stop offset="100%" stop-color="#F7820E"/>
+    </linearGradient>
+
+    <!-- Soft Light Blue Glow -->
+    <radialGradient id="blueGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E3EEFB" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0B3B8F" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Card Glass Gradient -->
+    <linearGradient id="glassCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="shadowFilter" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#031126" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="600" rx="24" fill="url(#bgGrad)"/>
+
+  <!-- Subtle Circular Ambient Highlights -->
+  <circle cx="160" cy="120" r="260" fill="url(#blueGlow)"/>
+  <circle cx="680" cy="480" r="240" fill="url(#blueGlow)"/>
+
+  <!-- Decorative Orange Arc (Echoing Landing Page CTA arcs) -->
+  <circle cx="720" cy="80" r="140" stroke="#F7820E" stroke-width="2.5" stroke-dasharray="14 10" opacity="0.4" fill="none"/>
+  <circle cx="60" cy="500" r="160" stroke="#F7820E" stroke-width="2.5" stroke-dasharray="10 8" opacity="0.3" fill="none"/>
+
+  <!-- Geometric Grid Accent -->
+  <g opacity="0.06" stroke="#FFFFFF" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="600"/>
+    <line x1="160" y1="0" x2="160" y2="600"/>
+    <line x1="240" y1="0" x2="240" y2="600"/>
+    <line x1="320" y1="0" x2="320" y2="600"/>
+    <line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="480" y1="0" x2="480" y2="600"/>
+    <line x1="560" y1="0" x2="560" y2="600"/>
+    <line x1="640" y1="0" x2="640" y2="600"/>
+    <line x1="720" y1="0" x2="720" y2="600"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="240" x2="800" y2="240"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="0" y1="480" x2="800" y2="480"/>
+  </g>
+
+  <!-- Central Collaborative Coding Terminal Card -->
+  <g filter="url(#shadowFilter)">
+    <rect x="110" y="80" width="580" height="380" rx="18" fill="url(#glassCard)" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.5"/>
+
+    <!-- IDE Window Titlebar -->
+    <path d="M 110 98 Q 110 80 128 80 L 672 80 Q 690 80 690 98 L 690 128 L 110 128 Z" fill="#061838" fill-opacity="0.95"/>
+    <circle cx="140" cy="104" r="5.5" fill="#EF4444"/>
+    <circle cx="160" cy="104" r="5.5" fill="#F7820E"/>
+    <circle cx="180" cy="104" r="5.5" fill="#10B981"/>
+
+    <!-- Title Bar Text -->
+    <text x="215" y="108" fill="#E3EEFB" font-family="'Montserrat', sans-serif" font-size="12" font-weight="600" opacity="0.9">wegrow.skillcampus // practical-learning-lab</text>
+
+    <!-- Branch Pill -->
+    <rect x="540" y="93" width="125" height="22" rx="11" fill="#0B3B8F" stroke="#F7820E" stroke-opacity="0.6"/>
+    <circle cx="554" cy="104" r="3.5" fill="#F7820E"/>
+    <text x="566" y="108" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="10" font-weight="600">campus::active</text>
+  </g>
+
+  <!-- IDE Inner Left: Code Editor -->
+  <g transform="translate(136, 148)">
+    <rect width="320" height="280" rx="12" fill="#071938" fill-opacity="0.8" stroke="#FFFFFF" stroke-opacity="0.08"/>
+
+    <!-- Line Numbers -->
+    <g fill="#4F6792" font-family="monospace" font-size="11" opacity="0.6">
+      <text x="14" y="30">01</text>
+      <text x="14" y="52">02</text>
+      <text x="14" y="74">03</text>
+      <text x="14" y="96">04</text>
+      <text x="14" y="118">05</text>
+      <text x="14" y="140">06</text>
+      <text x="14" y="162">07</text>
+      <text x="14" y="184">08</text>
+      <text x="14" y="206">09</text>
+      <text x="14" y="228">10</text>
+    </g>
+
+    <!-- Code Syntax Tokens -->
+    <g font-family="'Fira Code', monospace" font-size="11">
+      <text x="44" y="30" fill="#F7820E" font-weight="600">const</text>
+      <text x="86" y="30" fill="#E3EEFB">studentCareer =</text>
+      <text x="195" y="30" fill="#F7820E">new</text>
+      <text x="224" y="30" fill="#6EE7B7">WeGrowSkill()</text>
+
+      <text x="44" y="52" fill="#93C5FD">studentCareer</text>
+      <text x="135" y="52" fill="#E3EEFB">.masterTracks([</text>
+      <text x="64" y="74" fill="#FDE047">&apos;FullStack Development&apos;</text>
+      <text x="210" y="74" fill="#E3EEFB">,</text>
+      <text x="64" y="96" fill="#FDE047">&apos;Cloud &amp; DevOps&apos;</text>
+      <text x="175" y="96" fill="#E3EEFB">,</text>
+      <text x="64" y="118" fill="#FDE047">&apos;AI &amp; Data Engineering&apos;</text>
+      <text x="44" y="140" fill="#E3EEFB">]);</text>
+
+      <text x="44" y="162" fill="#F7820E" font-weight="600">await</text>
+      <text x="86" y="162" fill="#93C5FD">studentCareer</text>
+      <text x="176" y="162" fill="#E3EEFB">.connectIndustry();</text>
+
+      <!-- Success Callout -->
+      <rect x="20" y="190" width="280" height="42" rx="8" fill="#0B3B8F" stroke="#F7820E" stroke-width="1.2"/>
+      <circle cx="38" cy="211" r="9" fill="#10B981"/>
+      <path d="M 34 211 L 37 214 L 43 207" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="56" y="208" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="10" font-weight="700">100% Practical Project Passed</text>
+      <text x="56" y="222" fill="#E3EEFB" font-family="'Poppins', sans-serif" font-size="9" opacity="0.8">Ready for Placement &amp; Mentorship</text>
+    </g>
+  </g>
+
+  <!-- IDE Inner Right: Campus Analytics & Growth Curves -->
+  <g transform="translate(476, 148)">
+    <!-- Card 1: Skill Trajectory Chart -->
+    <rect width="188" height="132" rx="12" fill="#071938" fill-opacity="0.85" stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <text x="16" y="24" fill="#F7820E" font-family="'Montserrat', sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.8">CAREER TRAJECTORY</text>
+    <text x="16" y="44" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="16" font-weight="800">98% Success</text>
+
+    <!-- Upward Trend Chart Line -->
+    <path d="M 20 106 C 50 102 70 88 100 72 C 130 56 150 48 170 38" fill="none" stroke="#F7820E" stroke-width="3" stroke-linecap="round"/>
+    <!-- Area Under Curve -->
+    <path d="M 20 106 C 50 102 70 88 100 72 C 130 56 150 48 170 38 L 170 114 L 20 114 Z" fill="url(#orangeGrad)" opacity="0.15"/>
+    <circle cx="170" cy="38" r="4.5" fill="#FFFFFF" stroke="#F7820E" stroke-width="3"/>
+
+    <!-- Card 2: Industry Mentors -->
+    <g transform="translate(0, 146)">
+      <rect width="188" height="134" rx="12" fill="#071938" fill-opacity="0.85" stroke="#FFFFFF" stroke-opacity="0.08"/>
+      <text x="16" y="24" fill="#93C5FD" font-family="'Montserrat', sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.8">INDUSTRY IMMERSION</text>
+      <text x="16" y="46" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="15" font-weight="800">1-on-1 Mentorship</text>
+
+      <g transform="translate(16, 62)">
+        <!-- Mentor Avatar 1 -->
+        <circle cx="16" cy="16" r="16" fill="#0B3B8F" stroke="#F7820E" stroke-width="1.5"/>
+        <text x="16" y="20" text-anchor="middle" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="10" font-weight="700">DEV</text>
+
+        <!-- Mentor Avatar 2 -->
+        <circle cx="44" cy="16" r="16" fill="#F7820E"/>
+        <text x="44" y="20" text-anchor="middle" fill="#0B3B8F" font-family="'Montserrat', sans-serif" font-size="10" font-weight="800">IT</text>
+
+        <!-- Mentor Avatar 3 -->
+        <circle cx="72" cy="16" r="16" fill="#072359" stroke="#E3EEFB" stroke-width="1.5"/>
+        <text x="72" y="20" text-anchor="middle" fill="#E3EEFB" font-family="'Montserrat', sans-serif" font-size="10" font-weight="700">+15</text>
+      </g>
+      <text x="16" y="112" fill="#E3EEFB" font-family="'Poppins', sans-serif" font-size="10" opacity="0.85">Live Project Feedback Active</text>
+    </g>
+  </g>
+
+  <!-- Floating Floating Badge: Graduation & Skill Cap (Top Left) -->
+  <g transform="translate(70, 50)" filter="url(#shadowFilter)">
+    <rect width="170" height="48" rx="24" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.5"/>
+    <circle cx="26" cy="24" r="15" fill="#F7820E"/>
+    <!-- Graduation Cap Icon -->
+    <path d="M 26 15 L 34 19 L 26 23 L 18 19 Z M 21 21.5 L 21 26 C 21 28 31 28 31 26 L 31 21.5" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+    <text x="50" y="21" fill="#0B3B8F" font-family="'Montserrat', sans-serif" font-size="10" font-weight="800">CAMPUS VERIFIED</text>
+    <text x="50" y="34" fill="#3B4A66" font-family="'Poppins', sans-serif" font-size="9" font-weight="500">100% Practical Learning</text>
+  </g>
+
+  <!-- Floating Badge: Placement Guarantee / Career (Bottom Right) -->
+  <g transform="translate(560, 480)" filter="url(#shadowFilter)">
+    <rect width="180" height="54" rx="14" fill="#0B3B8F" stroke="#F7820E" stroke-width="1.5"/>
+    <circle cx="30" cy="27" r="16" fill="#F7820E"/>
+    <!-- Briefcase / Award Icon -->
+    <path d="M 25 23 L 35 23 L 35 32 L 25 32 Z M 28 23 L 28 20 Q 28 19 30 19 Q 32 19 32 20 L 32 23" stroke="#0B3B8F" stroke-width="1.6" fill="none"/>
+    <text x="54" y="24" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="11" font-weight="800">Placement Support</text>
+    <text x="54" y="38" fill="#F7820E" font-family="'Montserrat', sans-serif" font-size="9" font-weight="700">98% HIRING RATIO</text>
+  </g>
+
+  <!-- Bottom Brand Badge Banner -->
+  <g transform="translate(200, 500)">
+    <rect width="400" height="44" rx="22" fill="#072359" fill-opacity="0.95" stroke="#F7820E" stroke-width="1.2"/>
+    <circle cx="28" cy="22" r="5" fill="#F7820E"/>
+    <text x="44" y="26" fill="#FFFFFF" font-family="'Montserrat', sans-serif" font-size="12" font-weight="700" letter-spacing="0.5">WeGrow Skill Campus</text>
+    <text x="210" y="26" fill="#93C5FD" font-family="'Poppins', sans-serif" font-size="11">| Building Skills. Creating Careers.</text>
+  </g>
+</svg>
+
