@@ -7,6 +7,7 @@ export const MAIN_NAVIGATION: NavItem[] = [
   { label: "Industry", href: "/industry" },
   { label: "Placements", href: "/placements" },
   { label: "Global Exposure", href: "/global-exposure" },
+  { label: "Events", href: "/events" },
   { label: "Contact", href: "/contact" },
 ];
 
