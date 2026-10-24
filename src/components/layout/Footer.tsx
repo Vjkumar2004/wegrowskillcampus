@@ -63,12 +63,13 @@ export const Footer: React.FC = () => {
 
   const QUICK_LINKS = [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Programs", href: "/programs" },
-    { label: "Projects", href: "/projects" },
+    { label: "Courses", href: "/programs" },
     { label: "Events", href: "/events" },
-    { label: "Career Support", href: "/career-support" },
+    { label: "Skill Campus", href: "/skill-campus" },
+    { label: "Industry", href: "/industry" },
+    { label: "Placements", href: "/placements" },
     { label: "Global Exposure", href: "/global-exposure" },
+    { label: "About Us", href: "/about" },
     { label: "Contact Us", href: "/contact" },
   ];
 
@@ -148,10 +149,10 @@ export const Footer: React.FC = () => {
 
       {/* ================= MAIN CONTAINER (max-width 1760px, padding 0 100px) ================= */}
       <div className="relative z-10 w-full max-w-[1760px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-[100px]">
-        {/* ================= 5-COLUMN MAIN GRID ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 min-[1400px]:grid-cols-[1.3fr_0.8fr_1fr_0.9fr_1.2fr_1.2fr] gap-12 lg:gap-10 xl:gap-[50px] items-start">
+        {/* ================= TOP SECTION: 5-COLUMN MAIN GRID ================= */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-10 xl:gap-6 2xl:gap-8 items-start">
           {/* ================= COLUMN 1: BRAND ================= */}
-          <div className="flex w-full flex-col justify-start sm:col-span-2 min-[1400px]:col-span-1">
+          <div className="flex w-full flex-col justify-start md:col-span-2 xl:col-span-3">
             {/* Official WeGrow Skill Campus Logo from /logo.png */}
             <Link href="/" className="inline-block group w-fit" id="footer-logo">
               <div className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-[14px] inline-flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
@@ -164,39 +165,39 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
 
-            {/* Description: 21px, weight 400, line-height 1.6, rgba(255,255,255,0.9), max-width 430px, margin-top 30px */}
-            <p className="text-[17px] sm:text-[21px] font-normal leading-[1.6] text-white/90 max-w-[430px] mt-[30px]">
+            {/* Description */}
+            <p className="text-[16px] sm:text-[18px] font-normal leading-[1.6] text-white/90 max-w-[430px] mt-[26px]">
               Bridging the gap between learning and employment through industry-focused training,
               real projects and placement support.
             </p>
 
-            {/* Social icons row (margin-top 34px, gap 26px): 56px circles with brand colors */}
-            <div className="flex items-center gap-[18px] sm:gap-[26px] mt-[34px]">
+            {/* Social icons row */}
+            <div className="flex items-center gap-[16px] sm:gap-[20px] mt-[28px]">
               {/* LinkedIn: #0A66C2 */}
               <a
                 href="https://in.linkedin.com/company/wegrow-skill-campus"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WeGrow LinkedIn"
-                className="w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] rounded-full bg-[#0A66C2] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
+                className="w-[48px] h-[48px] sm:w-[54px] sm:h-[54px] rounded-full bg-[#0A66C2] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
               >
-                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
                 </svg>
               </a>
 
-              {/* Instagram: Gradient #F58529 → #DD2A7B → #8134AF */}
+              {/* Instagram: Gradient */}
               <a
                 href="https://www.instagram.com/wegrowskillcampus/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WeGrow Instagram"
-                className="w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] rounded-full flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
+                className="w-[48px] h-[48px] sm:w-[54px] sm:h-[54px] rounded-full flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
                 style={{
                   background: "linear-gradient(45deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%)",
                 }}
               >
-                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                 </svg>
               </a>
@@ -207,9 +208,9 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WeGrow YouTube"
-                className="w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] rounded-full bg-[#FF0000] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
+                className="w-[48px] h-[48px] sm:w-[54px] sm:h-[54px] rounded-full bg-[#FF0000] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
               >
-                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
               </a>
@@ -220,38 +221,38 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WeGrow Facebook"
-                className="w-[50px] h-[50px] sm:w-[56px] sm:h-[56px] rounded-full bg-[#1877F2] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
+                className="w-[48px] h-[48px] sm:w-[54px] sm:h-[54px] rounded-full bg-[#1877F2] flex items-center justify-center text-white transition-all duration-200 hover:-translate-y-[3px] hover:scale-[1.08] shadow-md"
               >
-                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-white" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </a>
             </div>
 
-            {/* Tagline row (margin-top 40px): "Learn | Build | Grow | Get Placed" */}
-            <div className="flex flex-wrap items-center text-[16px] sm:text-[20px] font-semibold text-white mt-[40px]">
+            {/* Tagline row */}
+            <div className="flex flex-wrap items-center text-[15px] sm:text-[18px] font-semibold text-white mt-[32px]">
               <span>Learn</span>
-              <span className="text-[#F7820E] mx-[14px] sm:mx-[20px] select-none">|</span>
+              <span className="text-[#F7820E] mx-[10px] sm:mx-[16px] select-none">|</span>
               <span>Build</span>
-              <span className="text-[#F7820E] mx-[14px] sm:mx-[20px] select-none">|</span>
+              <span className="text-[#F7820E] mx-[10px] sm:mx-[16px] select-none">|</span>
               <span>Grow</span>
-              <span className="text-[#F7820E] mx-[14px] sm:mx-[20px] select-none">|</span>
+              <span className="text-[#F7820E] mx-[10px] sm:mx-[16px] select-none">|</span>
               <span>Get Placed</span>
             </div>
           </div>
 
           {/* ================= COLUMN 2: QUICK LINKS ================= */}
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full xl:col-span-2">
             <button
               onClick={() => toggleAccordion("quickLinks")}
               className="flex items-center justify-between w-full text-left md:pointer-events-none"
               aria-expanded={openAccordions.quickLinks}
             >
               <div>
-                <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
+                <h3 className="text-[22px] sm:text-[25px] font-bold text-white tracking-tight">
                   Quick Links
                 </h3>
-                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[24px] sm:mb-[34px]" />
+                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[12px] mb-[20px] sm:mb-[28px]" />
               </div>
               <ChevronDown
                 className={`w-6 h-6 text-[#F7820E] md:hidden transition-transform duration-200 ${
@@ -268,7 +269,7 @@ export const Footer: React.FC = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[17px] sm:text-[20px] font-normal text-white/85 leading-[2.15] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
+                    className="text-[15px] sm:text-[17px] font-normal text-white/85 leading-[2.1] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
                   >
                     {link.label}
                   </Link>
@@ -278,17 +279,17 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ================= COLUMN 3: PROGRAMS ================= */}
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full xl:col-span-2">
             <button
               onClick={() => toggleAccordion("programs")}
               className="flex items-center justify-between w-full text-left md:pointer-events-none"
               aria-expanded={openAccordions.programs}
             >
               <div>
-                <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
+                <h3 className="text-[22px] sm:text-[25px] font-bold text-white tracking-tight">
                   Programs
                 </h3>
-                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[24px] sm:mb-[34px]" />
+                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[12px] mb-[20px] sm:mb-[28px]" />
               </div>
               <ChevronDown
                 className={`w-6 h-6 text-[#F7820E] md:hidden transition-transform duration-200 ${
@@ -305,7 +306,7 @@ export const Footer: React.FC = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[17px] sm:text-[20px] font-normal text-white/85 leading-[2.15] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
+                    className="text-[15px] sm:text-[17px] font-normal text-white/85 leading-[2.1] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
                   >
                     {link.label}
                   </Link>
@@ -315,17 +316,17 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ================= COLUMN 4: USEFUL LINKS ================= */}
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full xl:col-span-2">
             <button
               onClick={() => toggleAccordion("usefulLinks")}
               className="flex items-center justify-between w-full text-left md:pointer-events-none"
               aria-expanded={openAccordions.usefulLinks}
             >
               <div>
-                <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
+                <h3 className="text-[22px] sm:text-[25px] font-bold text-white tracking-tight">
                   Useful Links
                 </h3>
-                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[24px] sm:mb-[34px]" />
+                <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[12px] mb-[20px] sm:mb-[28px]" />
               </div>
               <ChevronDown
                 className={`w-6 h-6 text-[#F7820E] md:hidden transition-transform duration-200 ${
@@ -342,7 +343,7 @@ export const Footer: React.FC = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[17px] sm:text-[20px] font-normal text-white/85 leading-[2.15] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
+                    className="text-[15px] sm:text-[17px] font-normal text-white/85 leading-[2.1] block transition-all duration-200 ease-out hover:text-[#F7820E] hover:pl-[6px]"
                   >
                     {link.label}
                   </Link>
@@ -352,148 +353,175 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ================= COLUMN 5: CONTACT US ================= */}
-          {/* Thin vertical divider (1px rgba(255,255,255,0.1)) between col 4 and col 5 on wide displays */}
-          <div className="md:col-span-2 min-[1400px]:col-span-2 flex flex-col min-[1400px]:border-l min-[1400px]:border-white/10 min-[1400px]:pl-[50px]">
+          <div className="flex flex-col w-full md:col-span-2 xl:col-span-3 xl:border-l xl:border-white/10 xl:pl-6 2xl:pl-8">
             <div>
-              <h3 className="text-[23px] sm:text-[27px] font-bold text-white tracking-tight">
+              <h3 className="text-[22px] sm:text-[25px] font-bold text-white tracking-tight">
                 Contact Us
               </h3>
-              <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[14px] mb-[34px]" />
+              <div className="w-[46px] h-[3px] bg-[#F7820E] rounded-full mt-[12px] mb-[24px]" />
             </div>
 
-            <div className="grid gap-8 lg:grid-cols-2 lg:gap-6">
-            {/* Contact details and selected branch */}
-            <div className="space-y-[22px]">
-              {/* Select a campus and open its map location */}
-              <div className="flex items-start gap-[18px] sm:gap-[24px]">
-                <MapPin className="mt-1 h-[28px] w-[28px] shrink-0 stroke-[2] text-[#F7820E]" aria-hidden="true" />
-                <div className="min-w-0 flex-1">
-                  <div className="mb-4 grid grid-cols-2 gap-2 rounded-xl bg-white/10 p-1" role="group" aria-label="Choose a campus location">
-                    {(Object.keys(CAMPUS_LOCATIONS) as Array<keyof typeof CAMPUS_LOCATIONS>).map((campusKey) => {
-                      const campus = CAMPUS_LOCATIONS[campusKey];
-                      const isSelected = selectedCampus === campusKey;
-                      return (
-                        <button
-                          key={campusKey}
-                          type="button"
-                          onClick={() => setSelectedCampus(campusKey)}
-                          aria-pressed={isSelected}
-                          className={`rounded-lg px-3 py-2 text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-[#F7820E] ${isSelected ? "bg-[#F7820E] text-white shadow" : "text-white/80 hover:bg-white/10 hover:text-white"}`}
-                        >
-                          {campus.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <p aria-live="polite" className="text-base font-normal leading-relaxed text-white sm:text-lg">
-                    {activeCampus.address}
-                  </p>
-                  <a
-                    href={campusMapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-2 rounded-lg border border-[#F7820E]/60 bg-[#F7820E]/10 px-3 py-2 text-sm font-semibold text-orange-100 transition-colors hover:bg-[#F7820E]/20 focus:outline-none focus:ring-2 focus:ring-[#F7820E]"
+            {/* Campus Selector Pill Switcher */}
+            <div
+              className="mb-4 flex w-full rounded-xl bg-white/10 p-1"
+              role="group"
+              aria-label="Choose a campus location"
+            >
+              {(Object.keys(CAMPUS_LOCATIONS) as Array<keyof typeof CAMPUS_LOCATIONS>).map((campusKey) => {
+                const campus = CAMPUS_LOCATIONS[campusKey];
+                const isSelected = selectedCampus === campusKey;
+                return (
+                  <button
+                    key={campusKey}
+                    type="button"
+                    onClick={() => setSelectedCampus(campusKey)}
+                    aria-pressed={isSelected}
+                    className={`flex-1 rounded-lg px-3 py-2 text-sm font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#F7820E] ${
+                      isSelected
+                        ? "bg-[#F7820E] text-white shadow-md"
+                        : "text-white/80 hover:bg-white/10 hover:text-white"
+                    }`}
                   >
-                    View {activeCampus.label} on Google Maps
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                  </a>
-                </div>
-              </div>
+                    {campus.label}
+                  </button>
+                );
+              })}
+            </div>
 
-              {/* Phone */}
-              <div className="flex items-start gap-[24px]">
-                <Phone className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
-                <div className="flex flex-col gap-2">
-                  <a href="tel:+919344337331" className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors">+91 93443 37331</a>
-                  <a href="tel:+919363337331" className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors">+91 93633 37331</a>
-                </div>
-              </div>
+            {/* Address */}
+            <div className="flex items-start gap-3 text-white/90 mb-3.5">
+              <MapPin className="mt-1 h-5 w-5 shrink-0 stroke-[2] text-[#F7820E]" aria-hidden="true" />
+              <p aria-live="polite" className="text-sm sm:text-[15px] leading-relaxed">
+                {activeCampus.address}
+              </p>
+            </div>
 
-              {/* Mail */}
-              <div className="flex items-center gap-[24px]">
-                <Mail className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
-                <a
-                  href="mailto:enquiry@wegrowcampus.in"
-                  className="text-[18px] sm:text-[21px] font-normal text-white hover:text-[#F7820E] transition-colors"
-                >
-                  enquiry@wegrowcampus.in
-                </a>
-              </div>
-
-              {/* Clock */}
-              <div className="flex items-center gap-[24px]">
-                <Clock className="w-[28px] h-[28px] text-[#F7820E] shrink-0 stroke-[2]" />
-                <span className="text-[18px] sm:text-[21px] font-normal text-white">
-                  Classes: Mon - Sat, 9:00 AM - 7:00 PM
-                </span>
+            {/* Phone */}
+            <div className="flex items-start gap-3 text-white/90 mb-3">
+              <Phone className="h-5 w-5 shrink-0 stroke-[2] text-[#F7820E] mt-0.5" aria-hidden="true" />
+              <div className="flex flex-col gap-1 text-sm sm:text-[15px]">
+                <a href="tel:+919344337331" className="hover:text-[#F7820E] transition-colors">+91 93443 37331</a>
+                <a href="tel:+919363337331" className="hover:text-[#F7820E] transition-colors">+91 93633 37331</a>
               </div>
             </div>
 
-            <div className="min-w-0">
-              <h4 className="mb-4 text-lg font-bold text-white">Find Us</h4>
-              <div className="overflow-hidden rounded-xl border border-white/20 bg-white/10">
-                <iframe
-                  key={selectedCampus}
-                  title={`${activeCampus.label} campus map`}
-                  src={campusEmbedUrl}
-                  className="h-64 w-full border-0 sm:h-72"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
+            {/* Email */}
+            <div className="flex items-center gap-3 text-white/90 mb-3">
+              <Mail className="h-5 w-5 shrink-0 stroke-[2] text-[#F7820E]" aria-hidden="true" />
+              <a
+                href="mailto:enquiry@wegrowcampus.in"
+                className="text-sm sm:text-[15px] hover:text-[#F7820E] transition-colors break-all"
+              >
+                enquiry@wegrowcampus.in
+              </a>
+            </div>
+
+            {/* Hours */}
+            <div className="flex items-center gap-3 text-white/90 mb-3.5">
+              <Clock className="h-5 w-5 shrink-0 stroke-[2] text-[#F7820E]" aria-hidden="true" />
+              <span className="text-sm sm:text-[15px]">
+                Classes: Mon - Sat, 9:00 AM - 7:00 PM
+              </span>
+            </div>
+
+            {/* Direct Google Maps link */}
+            <a
+              href={campusMapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#F7820E] hover:text-white transition-colors"
+            >
+              <span>View {activeCampus.label} on Google Maps</span>
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+
+        {/* ================= LOWER SECTION: INTERACTIVE MAP & STAY UPDATED ================= */}
+        <div className="mt-12 pt-10 border-t border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* MAP CARD: lg:col-span-7 */}
+          <div className="lg:col-span-7 flex flex-col justify-between rounded-2xl border border-white/15 bg-white/[0.04] p-5 sm:p-6 shadow-lg backdrop-blur-sm">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#F7820E]/20 flex items-center justify-center text-[#F7820E]">
+                  <MapPin className="w-5 h-5 stroke-[2.5]" />
+                </div>
+                <div>
+                  <h4 className="text-lg sm:text-xl font-bold text-white">Find Us</h4>
+                  <p className="text-xs sm:text-sm text-white/70">
+                    Interactive map for {activeCampus.label} Campus
+                  </p>
+                </div>
               </div>
               <a
                 href={campusMapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-bold text-[#0B3B8F] transition-colors hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-[#F7820E]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#F7820E] px-4 py-2 text-xs sm:text-sm font-bold text-white shadow-sm transition-all hover:bg-[#E06F00] hover:scale-[1.02] active:scale-[0.98]"
               >
-                Open in Maps <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                <span>Open in Maps</span>
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
               </a>
             </div>
-            </div>
 
-            {/* Stay Updated Card (inside column 5, margin-top 46px) */}
-            <div className="w-full bg-white/[0.04] border border-white/[0.08] rounded-[16px] p-[24px] sm:p-[28px_24px] mt-[46px]">
-              <h4 className="text-[20px] sm:text-[23px] font-bold text-white">Stay Updated</h4>
-              <p className="text-[15px] sm:text-[17px] text-white/80 leading-[1.55] mt-[8px]">
-                Get the latest updates on programs, events and placement opportunities.
+            <div className="w-full overflow-hidden rounded-xl border border-white/20 bg-black/20 h-[220px] sm:h-[260px]">
+              <iframe
+                key={selectedCampus}
+                title={`${activeCampus.label} campus map`}
+                src={campusEmbedUrl}
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          {/* STAY UPDATED NEWSLETTER: lg:col-span-5 */}
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-white/15 bg-white/[0.04] p-6 sm:p-7 shadow-lg backdrop-blur-sm">
+            <div>
+              <span className="inline-block px-3 py-1 rounded-full bg-[#F7820E]/20 text-[#F7820E] text-xs font-bold tracking-wider uppercase mb-3">
+                Newsletter
+              </span>
+              <h4 className="text-xl sm:text-2xl font-bold text-white">Stay Updated</h4>
+              <p className="text-sm sm:text-base text-white/80 leading-relaxed mt-2">
+                Get the latest updates on programs, upcoming workshops, hackathons, and placement opportunities.
               </p>
-
-              {/* Email Subscription Form */}
-              <form onSubmit={handleSubscribe} className="mt-[22px]">
-                <div className="flex flex-col sm:flex-row h-auto sm:h-[60px] rounded-[8px] overflow-hidden bg-white shadow-sm">
-                  <div className="relative flex-1 flex items-center px-4 py-3 sm:py-0">
-                    <Mail className="w-5 h-5 text-[#0B3B8F] shrink-0 mr-3" />
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email"
-                      className="w-full bg-transparent text-[#0A1F44] text-[16px] sm:text-[18px] placeholder:text-[#7A869E] focus:outline-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="h-[52px] sm:h-full bg-[#F7820E] hover:bg-[#E06F00] text-white font-montserrat font-bold text-[17px] sm:text-[18px] px-[24px] sm:px-[28px] flex items-center justify-center gap-2 transition-colors shrink-0"
-                  >
-                    <span>Subscribe</span>
-                    <ArrowRight className="w-5 h-5 stroke-[2.5]" />
-                  </button>
-                </div>
-
-                {errorMsg && (
-                  <p className="text-[#FF8080] text-sm mt-2 font-medium">{errorMsg}</p>
-                )}
-
-                {subscribed && (
-                  <div className="flex items-center gap-2 text-emerald-400 text-[15px] mt-2 font-medium">
-                    <CheckCircle2 className="w-4 h-4 shrink-0" />
-                    <span>Thanks for subscribing!</span>
-                  </div>
-                )}
-              </form>
             </div>
+
+            {/* Email Subscription Form */}
+            <form onSubmit={handleSubscribe} className="mt-6">
+              <div className="flex flex-col sm:flex-row rounded-xl overflow-hidden bg-white shadow-sm border border-white/20">
+                <div className="relative flex-1 flex items-center px-4 py-3 sm:py-0">
+                  <Mail className="w-5 h-5 text-[#0B3B8F] shrink-0 mr-3" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full bg-transparent text-[#0A1F44] text-[15px] sm:text-[17px] placeholder:text-[#7A869E] focus:outline-none"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="h-[48px] sm:h-[54px] bg-[#F7820E] hover:bg-[#E06F00] text-white font-montserrat font-bold text-[15px] sm:text-[17px] px-6 flex items-center justify-center gap-2 transition-colors shrink-0"
+                >
+                  <span>Subscribe</span>
+                  <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                </button>
+              </div>
+
+              {errorMsg && (
+                <p className="text-[#FF8080] text-sm mt-2.5 font-medium">{errorMsg}</p>
+              )}
+
+              {subscribed && (
+                <div className="flex items-center gap-2 text-emerald-400 text-sm mt-2.5 font-medium">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                  <span>Thanks for subscribing!</span>
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </div>

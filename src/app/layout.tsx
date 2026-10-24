@@ -61,8 +61,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`}>
-      <body className="min-h-screen flex flex-col bg-[#F6F8FC] text-[#3B4A66] font-poppins antialiased selection:bg-[#F7820E] selection:text-white">
+    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`} suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className="min-h-screen flex flex-col bg-[#F6F8FC] text-[#3B4A66] font-poppins antialiased selection:bg-[#F7820E] selection:text-white"
+      >
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>

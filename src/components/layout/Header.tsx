@@ -53,10 +53,12 @@ export const Header: React.FC = () => {
         {/* Center Links (responsive for laptops and large screens) */}
         <nav
           aria-label="Main Navigation"
-          className="hidden xl:flex items-center gap-3.5 2xl:gap-5"
+          className="hidden xl:flex items-center gap-2.5 min-[1400px]:gap-3.5 2xl:gap-5"
         >
           {MAIN_NAVIGATION.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
             return (
               <Link
                 key={item.href}
@@ -64,7 +66,7 @@ export const Header: React.FC = () => {
                 prefetch
                 onPointerEnter={() => router.prefetch(item.href)}
                 onFocus={() => router.prefetch(item.href)}
-                className={`text-[14px] 2xl:text-[15px] font-montserrat transition-colors duration-150 relative py-1 whitespace-nowrap ${
+                className={`text-[13.5px] min-[1400px]:text-[14px] 2xl:text-[15px] font-montserrat transition-colors duration-150 relative py-1 whitespace-nowrap ${
                   isActive
                     ? "text-[#0B3B8F] font-bold after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-[3px] after:bg-[#F7820E] after:rounded-full"
                     : "text-[#1E3A6E] font-medium hover:text-[#0B3B8F]"
