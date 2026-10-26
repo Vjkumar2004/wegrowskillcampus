@@ -96,3 +96,13 @@
     -webkit-clip-path: polygon(0 0, 88% 0, 74% 45%, 100% 100%, 0 100%);
   }
 }
+
+
+/* Hide native scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

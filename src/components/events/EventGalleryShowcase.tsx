@@ -27,6 +27,15 @@ function resolveUrl(path: string): string {
 export default function EventGalleryShowcase() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [expandedEvents, setExpandedEvents] = useState<Record<string, boolean>>({});
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  const handleImageError = (thumbPath: string) => {
+    setFailedImages((prev) => {
+      const next = new Set(prev);
+      next.add(thumbPath);
+      return next;
+    });
+  };
   const [lightboxState, setLightboxState] = useState<{
     event: EventItem;
     photoIndex: number;
@@ -102,13 +111,13 @@ export default function EventGalleryShowcase() {
       </div>
 
       {/* Category Filter Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar justify-start md:justify-center">
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-5xl mx-auto mb-10">
         {EVENT_CATEGORIES.map((cat) => {
           const isActive = selectedCategory === cat;
           const count =
             cat === "All"
-              ? EVENTS_DATA.reduce((acc, ev) => acc + ev.photoCount, 0)
-              : EVENTS_DATA.find((ev) => ev.category === cat)?.photoCount ?? 0;
+              ? EVENTS_DATA.reduce((acc, ev) => acc + ev.photos.filter((p) => !failedImages.has(p.thumb)).length, 0)
+              : EVENTS_DATA.filter((ev) => ev.category === cat).reduce((acc, ev) => acc + ev.photos.filter((p) => !failedImages.has(p.thumb)).length, 0);
 
           return (
             <button
@@ -138,10 +147,13 @@ export default function EventGalleryShowcase() {
       {/* Events Sections */}
       <div className="space-y-12 sm:space-y-16">
         {filteredEvents.map((event) => {
+          const availablePhotos = event.photos.filter((p) => !failedImages.has(p.thumb));
+          if (availablePhotos.length === 0) return null;
+
           const isExpanded = !!expandedEvents[event.id];
-          const hasMoreThan4 = event.photos.length > 4;
-          const displayPhotos = isExpanded ? event.photos : event.photos.slice(0, 4);
-          const remainingCount = event.photos.length - 4;
+          const hasMoreThan4 = availablePhotos.length > 4;
+          const displayPhotos = isExpanded ? availablePhotos : availablePhotos.slice(0, 4);
+          const remainingCount = availablePhotos.length - 4;
 
           return (
             <div
@@ -159,7 +171,7 @@ export default function EventGalleryShowcase() {
                     <span className="text-gray-300">•</span>
                     <span className="inline-flex items-center gap-1 text-xs text-brand-textSecondary font-medium">
                       <Images className="w-3.5 h-3.5" />
-                      {event.photoCount} photos
+                      {availablePhotos.length} photos
                     </span>
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-navy">
@@ -181,7 +193,7 @@ export default function EventGalleryShowcase() {
                       key={photo.id}
                       onClick={() =>
                         setLightboxState({
-                          event,
+                          event: { ...event, photos: availablePhotos },
                           photoIndex: pIdx,
                         })
                       }
@@ -193,6 +205,7 @@ export default function EventGalleryShowcase() {
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         loading="lazy"
+                        onError={() => handleImageError(photo.thumb)}
                         className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                       />
 

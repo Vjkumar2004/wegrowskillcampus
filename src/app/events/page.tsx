@@ -29,8 +29,8 @@ const eventTypes = [
     text: "On-campus corporate interviews, aptitude bootcamps, and soft-skill mastery preparing students for top career opportunities.",
   },
   {
-    title: "Cultural & Campus Life",
-    text: "Festive gatherings like Krishna Jayanthi, annual college days, and educational tours fostering a vibrant community spirit.",
+    title: "Guest Lectures & Tours",
+    text: "Distinguished guest sessions by industry leaders, Krishna Jayanthi celebrations, and immersive educational tours fostering experiential learning.",
   },
 ];
 

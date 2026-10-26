@@ -92,7 +92,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
               <dl className="divide-y divide-brand-border">
                 {[
                   { label: "Duration", value: course.duration },
-                  { label: "Tamil Nadu pay reference", value: `${course.salaryEstimate} — comparable role: ${course.salarySourceRole}. Indicative only; not a course outcome or guarantee.` },
+                  { label: "Pay reference", value: `${course.salaryRange}. Indicative only; not a course outcome or guarantee.` },
                   { label: "Training modes", value: "Classroom, live online, weekend, fast-track, regular batches, and recorded sessions are listed on the WeGrow website. Confirm current availability with the campus." },
                   { label: "Class timings", value: "Classes run Monday to Saturday between 9:00 AM and 7:00 PM IST. Contact the campus to confirm available batch schedules." },
                   { label: "Eligibility", value: "Contact the campus to confirm entry requirements." },
@@ -104,7 +104,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
                   </div>
                 ))}
               </dl>
-              <p className="mt-5 text-sm text-brand-textSecondary">Salary reference: <a className="font-semibold text-brand-orange underline underline-offset-2" href={course.salarySourceUrl} target="_blank" rel="noreferrer">{course.salarySourceRole} pay data ↗</a>. Checked 13 October 2026; source sample sizes and update dates vary.</p>
+              <p className="mt-5 text-sm text-brand-textSecondary">Salary ranges shown are indicative industry benchmarks and are not a job or salary guarantee.</p>
             </section>
 
             <section className="rounded-[26px] border border-orange-100 bg-orange-50 p-7 text-center sm:p-9 lg:p-10">

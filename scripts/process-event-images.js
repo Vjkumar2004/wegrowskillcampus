@@ -71,16 +71,16 @@ const config = [
   },
   {
     slug: 'campus-celebrations',
-    title: 'Campus Life & Annual Celebrations',
-    category: 'Campus Life',
+    title: 'Guest Lectures',
+    category: 'Guest Lectures',
     description: 'Vibrant student gatherings, college fest performances, and extracurricular showcases celebrating talent and campus spirit.',
     dir: 'C:\\Users\\Deepak\\OneDrive\\Desktop\\Clg events',
     images: ['3V1A0006.JPG', '3V1A0007.JPG', '3V1A0023.JPG', '3V1A0024.JPG', '3V1A0077.JPG', '3V1A0085.JPG']
   },
   {
     slug: 'industrial-excursions',
-    title: 'Educational Tours & Industrial Excursions',
-    category: 'Field Excursions',
+    title: 'Tours',
+    category: 'Tours',
     description: 'Experiential learning beyond classrooms with industrial exposure tours, educational visits, and collaborative team journeys.',
     dir: 'C:\\Users\\Deepak\\OneDrive\\Desktop\\tour pics',
     images: [
@@ -195,8 +195,8 @@ export const EVENT_CATEGORIES = [
   "Workshops & Labs",
   "Placements & Careers",
   "Professional Training",
-  "Campus Life",
-  "Field Excursions",
+  "Guest Lectures",
+  "Tours",
 ] as const;
 
 export const EVENTS_DATA: EventItem[] = ${JSON.stringify(eventsData, null, 2)};

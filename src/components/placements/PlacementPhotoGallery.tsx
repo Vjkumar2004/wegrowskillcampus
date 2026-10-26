@@ -16,6 +16,9 @@ function resolveUrl(path: string): string {
 
 export default function PlacementPhotoGallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  const activePhotos = placementPhotos.filter((p) => !failedImages.has(p.thumb));
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -23,16 +26,16 @@ export default function PlacementPhotoGallery() {
       if (e.key === "Escape") setSelectedIndex(null);
       if (e.key === "ArrowLeft") {
         setSelectedIndex((prev) =>
-          prev !== null ? (prev - 1 + placementPhotos.length) % placementPhotos.length : null
+          prev !== null ? (prev - 1 + activePhotos.length) % activePhotos.length : null
         );
       }
       if (e.key === "ArrowRight") {
         setSelectedIndex((prev) =>
-          prev !== null ? (prev + 1) % placementPhotos.length : null
+          prev !== null ? (prev + 1) % activePhotos.length : null
         );
       }
     },
-    [selectedIndex]
+    [activePhotos.length, selectedIndex]
   );
 
   useEffect(() => {
@@ -48,7 +51,7 @@ export default function PlacementPhotoGallery() {
     };
   }, [handleKeyDown, selectedIndex]);
 
-  if (!placementPhotos.length) return null;
+  if (!activePhotos.length) return null;
 
   return (
     <section className="mb-14">
@@ -78,7 +81,7 @@ export default function PlacementPhotoGallery() {
 
       {/* 5-Photo Responsive Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-        {placementPhotos.map((photo, index) => (
+        {activePhotos.map((photo, index) => (
           <div
             key={photo.id}
             onClick={() => setSelectedIndex(index)}
@@ -90,6 +93,7 @@ export default function PlacementPhotoGallery() {
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
               loading="lazy"
+              onError={() => setFailedImages((prev) => new Set(prev).add(photo.thumb))}
               className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             />
 
@@ -132,7 +136,7 @@ export default function PlacementPhotoGallery() {
 
             <div className="flex items-center gap-4">
               <span className="text-xs sm:text-sm font-medium bg-white/10 px-3 py-1 rounded-full text-white/90">
-                {selectedIndex + 1} / {placementPhotos.length}
+                {selectedIndex + 1} / {activePhotos.length}
               </span>
               <button
                 onClick={() => setSelectedIndex(null)}
@@ -149,12 +153,12 @@ export default function PlacementPhotoGallery() {
             className="relative flex-1 flex items-center justify-center my-3 max-w-6xl w-full mx-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            {placementPhotos.length > 1 && (
+            {activePhotos.length > 1 && (
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedIndex(
-                    (selectedIndex - 1 + placementPhotos.length) % placementPhotos.length
+                    (selectedIndex - 1 + activePhotos.length) % activePhotos.length
                   );
                 }}
                 className="absolute left-2 sm:left-4 z-20 p-2.5 rounded-full bg-black/50 hover:bg-black/80 text-white border border-white/20 transition-all hover:scale-105"
@@ -166,19 +170,19 @@ export default function PlacementPhotoGallery() {
 
             <div className="relative w-full h-[70vh] sm:h-[78vh] flex items-center justify-center">
               <Image
-                src={resolveUrl(placementPhotos[selectedIndex].full)}
-                alt={placementPhotos[selectedIndex].alt}
+                src={resolveUrl(activePhotos[selectedIndex].full)}
+                alt={activePhotos[selectedIndex].alt}
                 fill
                 priority
                 className="object-contain"
               />
             </div>
 
-            {placementPhotos.length > 1 && (
+            {activePhotos.length > 1 && (
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  setSelectedIndex((selectedIndex + 1) % placementPhotos.length);
+                  setSelectedIndex((selectedIndex + 1) % activePhotos.length);
                 }}
                 className="absolute right-2 sm:right-4 z-20 p-2.5 rounded-full bg-black/50 hover:bg-black/80 text-white border border-white/20 transition-all hover:scale-105"
                 aria-label="Next photo"
