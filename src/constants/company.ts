@@ -17,6 +17,7 @@ export const SOCIAL_LINKS = [
 
 export const FOOTER_QUICK_LINKS = [
   { label: "Home", href: "/" },
+  { label: "Admissions 2026", href: "/landing" },
   { label: "About", href: "/about" },
   { label: "Skill Campus", href: "/skill-campus" },
   { label: "Industry", href: "/industry" },
@@ -35,7 +36,7 @@ export const FOOTER_PROGRAM_LINKS = [
 ];
 
 export const FOOTER_LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
   { label: "Sitemap", href: "/sitemap.xml" },
 ];

@@ -139,6 +139,7 @@ export const Header: React.FC = () => {
                 </Link>
               );
             })}
+
             <Link
               href="/student-login"
               prefetch
@@ -154,7 +155,7 @@ export const Header: React.FC = () => {
 
           <div className="p-6 border-t border-[#E3E8F0] bg-[#F6F8FC]">
             <p className="text-center text-xs text-[#3B4A66] font-medium">
-              WeGrow Skill Campus • Bridging Education & Industry
+              WeGrow Skill Campus • Bridging Education &amp; Industry
             </p>
           </div>
         </div>

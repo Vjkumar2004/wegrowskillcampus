@@ -63,6 +63,7 @@ export const Footer: React.FC = () => {
 
   const QUICK_LINKS = [
     { label: "Home", href: "/" },
+    { label: "Admissions 2026", href: "/landing" },
     { label: "Courses", href: "/programs" },
     { label: "Events", href: "/events" },
     { label: "Skill Campus", href: "/skill-campus" },
