@@ -32,6 +32,148 @@ export const EVENT_CATEGORIES = [
 
 export const EVENTS_DATA: EventItem[] = [
   {
+    "id": "wegrow-3-0",
+    "slug": "wegrow-3-0",
+    "title": "WeGrow 3.0 Grand Conclave & Startup Summit",
+    "category": "Innovation & Startups",
+    "description": "Inspiring student breakthroughs, visionary keynote addresses, and celebrating entrepreneurial milestones at the flagship WeGrow 3.0 campus edition.",
+    "coverImage": {
+      "id": "wegrow-3-0-1",
+      "thumb": "/events/WeGrow3.0/3V1A8464.JPG?tr=w-600,q-80",
+      "full": "/events/WeGrow3.0/3V1A8464.JPG?tr=w-1600,q-85",
+      "alt": "WeGrow 3.0 Grand Conclave photo 1 (3V1A8464.JPG)"
+    },
+    "photoCount": 21,
+    "photos": [
+      {
+        "id": "wegrow-3-0-1",
+        "thumb": "/events/WeGrow3.0/3V1A8464.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8464.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 1 (3V1A8464.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-2",
+        "thumb": "/events/WeGrow3.0/3V1A8470.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8470.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 2 (3V1A8470.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-3",
+        "thumb": "/events/WeGrow3.0/3V1A8471.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8471.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 3 (3V1A8471.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-4",
+        "thumb": "/events/WeGrow3.0/3V1A8478.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8478.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 4 (3V1A8478.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-5",
+        "thumb": "/events/WeGrow3.0/3V1A8482.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8482.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 5 (3V1A8482.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-6",
+        "thumb": "/events/WeGrow3.0/3V1A8483.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8483.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 6 (3V1A8483.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-7",
+        "thumb": "/events/WeGrow3.0/3V1A8489.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8489.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 7 (3V1A8489.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-8",
+        "thumb": "/events/WeGrow3.0/3V1A8492.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8492.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 8 (3V1A8492.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-9",
+        "thumb": "/events/WeGrow3.0/3V1A8525.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8525.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 9 (3V1A8525.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-10",
+        "thumb": "/events/WeGrow3.0/3V1A8529.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8529.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 10 (3V1A8529.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-11",
+        "thumb": "/events/WeGrow3.0/3V1A8602.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8602.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 11 (3V1A8602.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-12",
+        "thumb": "/events/WeGrow3.0/3V1A8680.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8680.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 12 (3V1A8680.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-13",
+        "thumb": "/events/WeGrow3.0/3V1A8696.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8696.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 13 (3V1A8696.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-14",
+        "thumb": "/events/WeGrow3.0/3V1A8751.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8751.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 14 (3V1A8751.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-15",
+        "thumb": "/events/WeGrow3.0/3V1A8781.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8781.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 15 (3V1A8781.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-16",
+        "thumb": "/events/WeGrow3.0/3V1A8829.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8829.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 16 (3V1A8829.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-17",
+        "thumb": "/events/WeGrow3.0/3V1A8870.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8870.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 17 (3V1A8870.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-18",
+        "thumb": "/events/WeGrow3.0/3V1A8875.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8875.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 18 (3V1A8875.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-19",
+        "thumb": "/events/WeGrow3.0/3V1A8929.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8929.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 19 (3V1A8929.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-20",
+        "thumb": "/events/WeGrow3.0/3V1A8933.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8933.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 20 (3V1A8933.JPG)"
+      },
+      {
+        "id": "wegrow-3-0-21",
+        "thumb": "/events/WeGrow3.0/3V1A8934.JPG?tr=w-600,q-80",
+        "full": "/events/WeGrow3.0/3V1A8934.JPG?tr=w-1600,q-85",
+        "alt": "WeGrow 3.0 Grand Conclave photo 21 (3V1A8934.JPG)"
+      }
+    ]
+  },
+  {
     "id": "krishna-jayanthi",
     "slug": "krishna-jayanthi",
     "title": "Krishna Jayanthi Cultural Celebration",

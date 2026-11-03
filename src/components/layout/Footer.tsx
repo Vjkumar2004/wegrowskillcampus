@@ -364,7 +364,7 @@ export const Footer: React.FC = () => {
 
             {/* Campus Selector Pill Switcher */}
             <div
-              className="mb-4 flex w-full rounded-xl bg-white/10 p-1"
+              className="mb-5 grid grid-cols-2 w-full max-w-[340px] rounded-xl bg-white/10 p-1 border border-white/15 gap-1 shadow-sm"
               role="group"
               aria-label="Choose a campus location"
             >
@@ -377,9 +377,9 @@ export const Footer: React.FC = () => {
                     type="button"
                     onClick={() => setSelectedCampus(campusKey)}
                     aria-pressed={isSelected}
-                    className={`flex-1 rounded-lg px-3 py-2 text-sm font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#F7820E] ${
+                    className={`rounded-lg py-2 px-2 text-xs sm:text-[13px] 2xl:text-sm font-bold text-center tracking-tight transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#F7820E] whitespace-nowrap overflow-hidden text-ellipsis ${
                       isSelected
-                        ? "bg-[#F7820E] text-white shadow-md"
+                        ? "bg-[#F7820E] text-white shadow-md scale-[1.01]"
                         : "text-white/80 hover:bg-white/10 hover:text-white"
                     }`}
                   >

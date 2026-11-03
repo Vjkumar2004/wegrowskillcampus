@@ -51,9 +51,9 @@ function matchesFilter(course: Course, filter: CourseFilter) {
 }
 
 export default function CourseCatalog({ courses }: { courses: Course[] }) {
-  const [activeFilter, setActiveFilter] = useState<CourseFilter | null>(null);
+  const [activeFilter, setActiveFilter] = useState<CourseFilter>("all");
   const visibleCourses = useMemo(
-    () => activeFilter ? courses.filter((course) => matchesFilter(course, activeFilter)) : [],
+    () => courses.filter((course) => matchesFilter(course, activeFilter)),
     [courses, activeFilter],
   );
   const activeLabel = filters.find((filter) => filter.id === activeFilter)?.label;
@@ -84,12 +84,11 @@ export default function CourseCatalog({ courses }: { courses: Course[] }) {
       </div>
 
       <p className="mb-5 text-sm font-medium text-brand-textSecondary" aria-live="polite">
-        {activeFilter
-          ? `Showing ${visibleCourses.length} ${visibleCourses.length === 1 ? "course" : "courses"} in ${activeLabel}.`
-          : "Choose a subject above to view matching courses."}
+        Showing {visibleCourses.length} {visibleCourses.length === 1 ? "course" : "courses"}
+        {activeFilter === "all" ? " across all programs." : ` in ${activeLabel}.`}
       </p>
 
-      {activeFilter && (visibleCourses.length > 0 ? (
+      {visibleCourses.length > 0 ? (
         <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {visibleCourses.map((course) => (
             <article key={course.id} className="group flex flex-col overflow-hidden rounded-[26px] border border-brand-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange/50 hover:shadow-elevated">
@@ -118,7 +117,7 @@ export default function CourseCatalog({ courses }: { courses: Course[] }) {
         <div className="mb-12 rounded-2xl border border-brand-border bg-white p-10 text-center text-brand-textSecondary">
           No courses are currently listed for this subject.
         </div>
-      ))}
+      )}
     </>
   );
 }

@@ -20,8 +20,12 @@ import {
 } from "@/data/eventsData";
 
 function resolveUrl(path: string): string {
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
   const cdnEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || "https://ik.imagekit.io/Deepak2004";
-  return `${cdnEndpoint.replace(/\/$/, "")}${path}`;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${cdnEndpoint.replace(/\/$/, "")}${normalizedPath}`;
 }
 
 export default function EventGalleryShowcase() {
