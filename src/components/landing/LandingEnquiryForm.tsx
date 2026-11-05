@@ -122,12 +122,20 @@ export const LandingEnquiryForm: React.FC<LandingEnquiryFormProps> = ({
         message: detailedMessage,
       });
 
+      if (typeof window !== "undefined" && typeof window.fbq === "function") {
+        window.fbq("track", "Lead");
+      }
+
       setStatus("success");
       setFeedbackMessage(
         "Thank you! Your enquiry has been received. Our senior counselor from your chosen campus will call you within 2 business hours."
       );
     } catch {
       // In static or decoupled frontend mode, still celebrate and provide instant whatsapp
+      if (typeof window !== "undefined" && typeof window.fbq === "function") {
+        window.fbq("track", "Lead");
+      }
+
       setStatus("success");
       setFeedbackMessage(
         "Your enquiry details have been recorded! You can also chat directly with our admissions coordinator on WhatsApp right now."

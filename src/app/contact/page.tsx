@@ -62,6 +62,11 @@ export default function ContactPage() {
         preferredMode && `Preferred learning mode: ${preferredMode}`,
       ].filter(Boolean).join("\n\n");
       await submitContactEnquiry({ ...formData, message: enquiryMessage });
+
+      if (typeof window !== "undefined" && typeof window.fbq === "function") {
+        window.fbq("track", "Lead");
+      }
+
       setStatus("success");
       setFeedbackMessage("Thank you for your enquiry. Our admissions team will reach out shortly.");
       setFormData({
