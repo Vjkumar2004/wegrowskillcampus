@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "sync-events": "node scripts/sync-imagekit-events.js",
     "format": "prettier --write ."
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import {
   ChevronLeft,
@@ -11,10 +11,10 @@ import {
   ZoomIn,
   Images,
   Sparkles,
+  RotateCw,
 } from "lucide-react";
 import {
   EVENTS_DATA,
-  EVENT_CATEGORIES,
   EventItem,
   EventPhoto,
 } from "@/data/eventsData";
@@ -29,12 +29,36 @@ function resolveUrl(path: string): string {
 }
 
 export default function EventGalleryShowcase() {
+  const [events, setEvents] = useState<EventItem[]>(EVENTS_DATA);
+  const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [expandedEvents, setExpandedEvents] = useState<Record<string, boolean>>({});
   const [lightboxState, setLightboxState] = useState<{
     event: EventItem;
     photoIndex: number;
   } | null>(null);
+
+  // Auto-sync with ImageKit API
+  const syncWithImageKit = useCallback(async (force = false) => {
+    try {
+      setIsSyncing(true);
+      const res = await fetch(`/api/events${force ? "?refresh=true" : ""}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && Array.isArray(data.events) && data.events.length > 0) {
+          setEvents(data.events);
+        }
+      }
+    } catch (err) {
+      console.warn("[EventGalleryShowcase] Dynamic sync error, using cached data:", err);
+    } finally {
+      setIsSyncing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    syncWithImageKit();
+  }, [syncWithImageKit]);
 
   const toggleExpand = (eventId: string) => {
     setExpandedEvents((prev) => ({
@@ -43,11 +67,22 @@ export default function EventGalleryShowcase() {
     }));
   };
 
+  // Dynamic category list derived from current events
+  const categories = useMemo(() => {
+    const list = ["All"];
+    events.forEach((ev) => {
+      if (!list.includes(ev.category)) {
+        list.push(ev.category);
+      }
+    });
+    return list;
+  }, [events]);
+
   // Filter events based on active category tab
   const filteredEvents =
     selectedCategory === "All"
-      ? EVENTS_DATA
-      : EVENTS_DATA.filter((e) => e.category === selectedCategory);
+      ? events
+      : events.filter((e) => e.category === selectedCategory);
 
   // Keyboard navigation for Lightbox
   const handleKeyDown = useCallback(
@@ -103,16 +138,45 @@ export default function EventGalleryShowcase() {
           Explore photographic glimpses from conferences, festivals, recruitment drives,
           leadership conclaves, and hands-on workshops across our campus.
         </p>
+
+        {/* Live Auto-Sync Status Indicator */}
+        <div className="mt-4 flex items-center justify-center">
+          <button
+            type="button"
+            onClick={() => syncWithImageKit(true)}
+            disabled={isSyncing}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-slate-600 hover:text-brand-navy hover:border-brand-orange/40 hover:bg-orange-50/50 shadow-xs transition-all disabled:opacity-60 cursor-pointer"
+            title="Click to check ImageKit cloud for new photos"
+          >
+            <span
+              className={`w-2 h-2 rounded-full ${
+                isSyncing ? "bg-amber-500 animate-ping" : "bg-emerald-500"
+              }`}
+            />
+            <span>
+              {isSyncing
+                ? "Checking ImageKit for new photos..."
+                : "Auto-synced with ImageKit"}
+            </span>
+            <RotateCw
+              className={`w-3.5 h-3.5 text-slate-400 ${
+                isSyncing ? "animate-spin text-brand-orange" : ""
+              }`}
+            />
+          </button>
+        </div>
       </div>
 
       {/* Category Filter Tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar justify-start md:justify-center">
-        {EVENT_CATEGORIES.map((cat) => {
+        {categories.map((cat) => {
           const isActive = selectedCategory === cat;
           const count =
             cat === "All"
-              ? EVENTS_DATA.reduce((acc, ev) => acc + ev.photoCount, 0)
-              : EVENTS_DATA.find((ev) => ev.category === cat)?.photoCount ?? 0;
+              ? events.reduce((acc, ev) => acc + ev.photoCount, 0)
+              : events
+                  .filter((ev) => ev.category === cat)
+                  .reduce((acc, ev) => acc + ev.photoCount, 0);
 
           return (
             <button
