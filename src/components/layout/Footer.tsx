@@ -16,7 +16,7 @@ import {
 const CAMPUS_LOCATIONS = {
   sivakasi: {
     label: "Sivakasi",
-    address: "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123",
+    address: "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
   },
   srivilliputhur: {
     label: "Srivilliputhur",

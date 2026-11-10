@@ -2,7 +2,7 @@ import { ContactDetails } from "@/types";
 
 export const COMPANY_INFO: ContactDetails = {
   companyName: "WeGrow Skill Campus Pvt. Ltd.",
-  addressPlaceholder: "100A/5, 1st Floor, Thiruthangal Road, Sivakasi, Tamil Nadu, India",
+  addressPlaceholder: "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
   phonePlaceholder: "+91 93443 37331",
   emailPlaceholder: "enquiry@wegrowcampus.in",
   workingHours: "Monday - Saturday: 9:00 AM - 7:00 PM IST",

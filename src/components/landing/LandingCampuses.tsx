@@ -18,7 +18,7 @@ export const LandingCampuses: React.FC = () => {
       name: "Sivakasi Campus",
       badge: "Main Headquarters & Mega Lab",
       address:
-        "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123, Tamil Nadu",
+        "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
       phone: "+91 93443 37331",
       phoneRaw: "+919344337331",
       hours: "Monday – Saturday: 9:00 AM – 7:00 PM IST",
