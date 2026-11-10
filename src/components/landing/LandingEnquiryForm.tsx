@@ -350,7 +350,7 @@ export const LandingEnquiryForm: React.FC<LandingEnquiryFormProps> = ({
                     </label>
                     <div className="grid grid-cols-3 gap-2.5">
                       {[
-                        { id: "Sivakasi", label: "Sivakasi", sub: "Thiruthangal Rd" },
+                        { id: "Sivakasi", label: "Sivakasi", sub: "2 Campuses" },
                         { id: "Sattur", label: "Sattur", sub: "Service Center" },
                         { id: "Srivilliputtur", label: "Srivilliputtur", sub: "North Car St" },
                       ].map((loc) => {

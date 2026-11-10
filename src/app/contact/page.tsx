@@ -14,14 +14,37 @@ const contactNumbers = [
   { display: "+91 93633 37331", tel: "+919363337331", whatsapp: "919363337331" },
 ];
 
-const campuses = [
+interface CampusBranch {
+  label?: string;
+  address: string;
+}
+
+interface CampusInfo {
+  name: string;
+  branches: CampusBranch[];
+}
+
+const campuses: CampusInfo[] = [
   {
     name: "Sivakasi",
-    address: "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
+    branches: [
+      {
+        label: "Campus 1 (Downstairs Naturals - Primary)",
+        address: "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
+      },
+      {
+        label: "Campus 2 (Thiruthangal Road)",
+        address: "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123",
+      },
+    ],
   },
   {
     name: "Srivilliputhur",
-    address: "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125",
+    branches: [
+      {
+        address: "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125",
+      },
+    ],
   },
 ];
 
@@ -160,11 +183,25 @@ export default function ContactPage() {
 
               <div className="border-t border-slate-100 pt-5">
                 <h2 className="mb-4 text-xl font-bold text-brand-navy">Visit Our Campuses</h2>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {campuses.map((campus) => (
                     <article key={campus.name} className="rounded-2xl border border-slate-100 bg-brand-bg/70 p-4 text-sm">
-                      <h3 className="mb-2 font-bold text-brand-navy">{campus.name}</h3>
-                      <p className="flex gap-2 leading-6 text-brand-textSecondary"><MapPin className="mt-1 h-4 w-4 shrink-0 text-brand-orange" aria-hidden="true" />{campus.address}</p>
+                      <h3 className="mb-3 font-bold text-brand-navy text-base">{campus.name}</h3>
+                      <div className="space-y-3">
+                        {campus.branches.map((branch, idx) => (
+                          <div key={idx} className={idx > 0 ? "pt-3 border-t border-slate-200/70" : ""}>
+                            {branch.label && (
+                              <span className="mb-1.5 inline-block text-[11px] font-bold text-brand-orange uppercase tracking-wider">
+                                {branch.label}
+                              </span>
+                            )}
+                            <p className="flex gap-2 leading-6 text-brand-textSecondary">
+                              <MapPin className="mt-1 h-4 w-4 shrink-0 text-brand-orange" aria-hidden="true" />
+                              <span>{branch.address}</span>
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </article>
                   ))}
                 </div>

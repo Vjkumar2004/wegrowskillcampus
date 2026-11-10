@@ -11,14 +11,41 @@ import {
   CheckCircle,
 } from "lucide-react";
 
+interface CampusBranch {
+  label?: string;
+  address: string;
+}
+
+interface CampusItem {
+  id: string;
+  name: string;
+  badge: string;
+  branches: CampusBranch[];
+  phone: string;
+  phoneRaw: string;
+  hours: string;
+  features: string[];
+  mapUrl: string;
+}
+
 export const LandingCampuses: React.FC = () => {
-  const campuses = [
+  const campuses: CampusItem[] = [
     {
       id: "sivakasi",
       name: "Sivakasi Campus",
       badge: "Main Headquarters & Mega Lab",
-      address:
-        "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
+      branches: [
+        {
+          label: "Campus 1 (Downstairs Naturals - Primary)",
+          address:
+            "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
+        },
+        {
+          label: "Campus 2 (Thiruthangal Road)",
+          address:
+            "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123",
+        },
+      ],
       phone: "+91 93443 37331",
       phoneRaw: "+919344337331",
       hours: "Monday – Saturday: 9:00 AM – 7:00 PM IST",
@@ -34,8 +61,12 @@ export const LandingCampuses: React.FC = () => {
       id: "srivilliputtur",
       name: "Srivilliputtur Campus",
       badge: "Regional Center of Excellence",
-      address:
-        "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125, Tamil Nadu",
+      branches: [
+        {
+          address:
+            "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125, Tamil Nadu",
+        },
+      ],
       phone: "+91 93633 37331",
       phoneRaw: "+919363337331",
       hours: "Monday – Saturday: 9:00 AM – 7:00 PM IST",
@@ -51,8 +82,12 @@ export const LandingCampuses: React.FC = () => {
       id: "sattur",
       name: "Sattur Service Center",
       badge: "Student Information & Transit Hub",
-      address:
-        "Directly serving learners across Sattur, Kovilpatti, and Virudhunagar with transport transit connectivity and weekend batches.",
+      branches: [
+        {
+          address:
+            "Directly serving learners across Sattur, Kovilpatti, and Virudhunagar with transport transit connectivity and weekend batches.",
+        },
+      ],
       phone: "+91 93443 37331 / +91 93633 37331",
       phoneRaw: "+919344337331",
       hours: "Helpline Active: 9:00 AM – 7:00 PM (Mon-Sat)",
@@ -103,9 +138,18 @@ export const LandingCampuses: React.FC = () => {
                   {campus.name}
                 </h3>
 
-                <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed min-h-[50px]">
-                  {campus.address}
-                </p>
+                <div className="mt-3 space-y-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed min-h-[50px]">
+                  {campus.branches.map((branch, idx) => (
+                    <div key={idx} className={idx > 0 ? "pt-2 border-t border-slate-100" : ""}>
+                      {branch.label && (
+                        <span className="block text-[11px] font-bold text-brand-orange uppercase tracking-wider mb-0.5">
+                          {branch.label}
+                        </span>
+                      )}
+                      <span>{branch.address}</span>
+                    </div>
+                  ))}
+                </div>
 
                 {/* Contact numbers */}
                 <div className="mt-4 space-y-2 border-t border-slate-100 pt-3 text-xs sm:text-sm">

@@ -13,14 +13,40 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-const CAMPUS_LOCATIONS = {
+interface CampusBranch {
+  label?: string;
+  address: string;
+}
+
+interface CampusLocationDetail {
+  label: string;
+  address: string;
+  branches: CampusBranch[];
+}
+
+const CAMPUS_LOCATIONS: Record<"sivakasi" | "srivilliputhur", CampusLocationDetail> = {
   sivakasi: {
     label: "Sivakasi",
     address: "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
+    branches: [
+      {
+        label: "Campus 1 (Downstairs Naturals - Primary)",
+        address: "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
+      },
+      {
+        label: "Campus 2 (Thiruthangal Road)",
+        address: "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123",
+      },
+    ],
   },
   srivilliputhur: {
     label: "Srivilliputhur",
     address: "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125",
+    branches: [
+      {
+        address: "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125",
+      },
+    ],
   },
 };
 
@@ -390,11 +416,20 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Address */}
-            <div className="flex items-start gap-3 text-white/90 mb-3.5">
-              <MapPin className="mt-1 h-5 w-5 shrink-0 stroke-[2] text-[#F7820E]" aria-hidden="true" />
-              <p aria-live="polite" className="text-sm sm:text-[15px] leading-relaxed">
-                {activeCampus.address}
-              </p>
+            <div className="space-y-3 mb-4">
+              {activeCampus.branches.map((branch, idx) => (
+                <div key={idx} className="flex items-start gap-3 text-white/90">
+                  <MapPin className="mt-1 h-5 w-5 shrink-0 stroke-[2] text-[#F7820E]" aria-hidden="true" />
+                  <div className="text-sm sm:text-[15px] leading-relaxed">
+                    {branch.label && (
+                      <span className="block text-[11px] font-bold text-[#F7820E] uppercase tracking-wider mb-0.5">
+                        {branch.label}
+                      </span>
+                    )}
+                    <span>{branch.address}</span>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Phone */}
