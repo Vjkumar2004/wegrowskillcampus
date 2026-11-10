@@ -55,19 +55,19 @@ export default function ContactPage() {
     setStatus("submitting");
     setFeedbackMessage("");
 
-    // Prepare WhatsApp message formatted with clean text (no emojis so question mark symbols do not appear)
+    // Prepare WhatsApp message formatted with pure plain text (no bold, no asterisks, no symbols)
     const lines = [
-      "*New Enquiry - WeGrow Skill Campus*",
+      "New Enquiry: WeGrow Skill Campus",
       "",
-      `*Name:* ${formData.fullName.trim()}`,
-      `*Email:* ${formData.email.trim()}`,
-      `*Phone:* ${formData.phone.trim()}`,
-      courseOfInterest ? `*Course of Interest:* ${courseOfInterest}` : null,
-      preferredCampus ? `*Preferred Campus:* ${preferredCampus}` : null,
-      preferredMode ? `*Learning Mode:* ${preferredMode}` : null,
-      formData.message.trim() ? `*Message:* ${formData.message.trim()}` : null,
+      `Name: ${formData.fullName.trim()}`,
+      `Email: ${formData.email.trim()}`,
+      `Phone: ${formData.phone.trim()}`,
+      courseOfInterest ? `Course of Interest: ${courseOfInterest}` : null,
+      preferredCampus ? `Preferred Campus: ${preferredCampus}` : null,
+      preferredMode ? `Learning Mode: ${preferredMode}` : null,
+      formData.message.trim() ? `Message: ${formData.message.trim()}` : null,
       "",
-      "*Source:* www.wegrowcampus.in/contact",
+      "Source: www.wegrowcampus.in/contact",
     ].filter(Boolean);
 
     const whatsappMessage = lines.join("\n");
