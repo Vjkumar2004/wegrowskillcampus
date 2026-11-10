@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { MapPin, Phone, Globe, Send, CheckCircle2, MessageCircle } from "lucide-react";
 import { COURSES } from "@/constants/courses";
@@ -40,6 +40,7 @@ export default function ContactPage() {
   const [preferredCampus, setPreferredCampus] = useState("");
   const [preferredMode, setPreferredMode] = useState("");
   const [submittedWhatsappUrl, setSubmittedWhatsappUrl] = useState("");
+  const isSubmittingRef = useRef(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -52,6 +53,8 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmittingRef.current || status === "submitting") return;
+    isSubmittingRef.current = true;
     setStatus("submitting");
     setFeedbackMessage("");
 
@@ -75,12 +78,13 @@ export default function ContactPage() {
     const whatsappUrl = `https://wa.me/${targetWhatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     setSubmittedWhatsappUrl(whatsappUrl);
 
-    // Open WhatsApp immediately in response to user click to prevent popup blockers
+    // Open WhatsApp exactly ONCE (prevent duplicate triggers)
     if (typeof window !== "undefined") {
-      const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-      if (!opened) {
-        // If popup blocker blocked the new window, redirect in current tab
+      const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+      if (isMobile) {
         window.location.href = whatsappUrl;
+      } else {
+        window.open(whatsappUrl, "_blank");
       }
     }
 
@@ -98,6 +102,10 @@ export default function ContactPage() {
       await submitContactEnquiry({ ...formData, message: enquiryMessage });
     } catch (err: unknown) {
       console.warn("Backend enquiry submission note:", err);
+    } finally {
+      setTimeout(() => {
+        isSubmittingRef.current = false;
+      }, 1500);
     }
 
     setStatus("success");
