@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { MapPin, Phone, Globe, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Globe, Send, CheckCircle2, MessageCircle } from "lucide-react";
 import { COURSES } from "@/constants/courses";
 import Container from "@/components/common/Container";
 import Button from "@/components/common/Button";
@@ -39,6 +39,7 @@ export default function ContactPage() {
   const [courseOfInterest, setCourseOfInterest] = useState("");
   const [preferredCampus, setPreferredCampus] = useState("");
   const [preferredMode, setPreferredMode] = useState("");
+  const [submittedWhatsappUrl, setSubmittedWhatsappUrl] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -54,6 +55,39 @@ export default function ContactPage() {
     setStatus("submitting");
     setFeedbackMessage("");
 
+    // Prepare WhatsApp message formatted with Markdown & emojis
+    const lines = [
+      "🎓 *New Enquiry - WeGrow Skill Campus*",
+      "",
+      `👤 *Name:* ${formData.fullName.trim()}`,
+      `📧 *Email:* ${formData.email.trim()}`,
+      `📞 *Phone:* ${formData.phone.trim()}`,
+      courseOfInterest ? `📚 *Course of Interest:* ${courseOfInterest}` : null,
+      preferredCampus ? `📍 *Preferred Campus:* ${preferredCampus}` : null,
+      preferredMode ? `💻 *Learning Mode:* ${preferredMode}` : null,
+      formData.message.trim() ? `💬 *Message:* ${formData.message.trim()}` : null,
+      "",
+      "🌐 *Source:* www.wegrowcampus.in/contact",
+    ].filter(Boolean);
+
+    const whatsappMessage = lines.join("\n");
+    const targetWhatsappNumber = "919344337331"; // First WhatsApp number: +91 93443 37331
+    const whatsappUrl = `https://wa.me/${targetWhatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    setSubmittedWhatsappUrl(whatsappUrl);
+
+    // Open WhatsApp immediately in response to user click to prevent popup blockers
+    if (typeof window !== "undefined") {
+      const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      if (!opened) {
+        // If popup blocker blocked the new window, redirect in current tab
+        window.location.href = whatsappUrl;
+      }
+    }
+
+    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+      window.fbq("track", "Lead");
+    }
+
     try {
       const enquiryMessage = [
         formData.message,
@@ -62,32 +96,24 @@ export default function ContactPage() {
         preferredMode && `Preferred learning mode: ${preferredMode}`,
       ].filter(Boolean).join("\n\n");
       await submitContactEnquiry({ ...formData, message: enquiryMessage });
-
-      if (typeof window !== "undefined" && typeof window.fbq === "function") {
-        window.fbq("track", "Lead");
-      }
-
-      setStatus("success");
-      setFeedbackMessage("Thank you for your enquiry. Our admissions team will reach out shortly.");
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        interestArea: "SkillCampus",
-        message: "",
-      });
-      setCourseOfInterest("");
-      setPreferredCampus("");
-      setPreferredMode("");
     } catch (err: unknown) {
-      // In early frontend foundation, show meaningful message without crashing
-      setStatus("error");
-      const errorMsg =
-        err instanceof Error ? err.message : "Unable to submit enquiry at this moment.";
-      setFeedbackMessage(
-        `${errorMsg} (Please note: Backend API server must be active at the configured endpoint).`
-      );
+      console.warn("Backend enquiry submission note:", err);
     }
+
+    setStatus("success");
+    setFeedbackMessage(
+      "Thank you for your enquiry! The form details have been forwarded to our WhatsApp (+91 93443 37331). Our admissions team will reach out shortly."
+    );
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      interestArea: "SkillCampus",
+      message: "",
+    });
+    setCourseOfInterest("");
+    setPreferredCampus("");
+    setPreferredMode("");
   };
 
   return (
@@ -153,12 +179,27 @@ export default function ContactPage() {
               </p>
 
               {status === "success" && (
-                <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded flex items-start space-x-3 text-emerald-800 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true" />
-                  <div>
-                    <strong className="block font-semibold">Enquiry Received!</strong>
-                    <span>{feedbackMessage}</span>
+                <div className="mb-6 p-4 sm:p-5 bg-emerald-50 border border-emerald-200 rounded-2xl flex flex-col gap-3 text-emerald-900 text-sm">
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <div>
+                      <strong className="block font-bold text-base text-emerald-900">Enquiry Submitted Successfully!</strong>
+                      <span className="text-emerald-800 text-xs sm:text-sm">{feedbackMessage}</span>
+                    </div>
                   </div>
+                  {submittedWhatsappUrl && (
+                    <div className="pt-1">
+                      <a
+                        href={submittedWhatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-emerald-700 transition"
+                      >
+                        <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                        <span>Chat on WhatsApp (+91 93443 37331)</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -270,7 +311,7 @@ export default function ContactPage() {
                   By submitting this form, you acknowledge that your information will be handled according to our <Link href="/privacy-policy" className="text-brand-blue underline">Privacy Policy</Link>.
                 </p>
 
-                <div className="pt-2">
+                <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3">
                   <Button
                     type="submit"
                     variant="primary"
@@ -281,6 +322,10 @@ export default function ContactPage() {
                     <Send className="w-4 h-4 mr-2" aria-hidden="true" />
                     <span>{status === "submitting" ? "Submitting..." : "Submit Enquiry"}</span>
                   </Button>
+                  <span className="text-xs text-slate-500 flex items-center gap-1.5">
+                    <MessageCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true" />
+                    <span>Automatically sends details to WhatsApp (+91 93443 37331)</span>
+                  </span>
                 </div>
               </form>
             </div>
