@@ -36,12 +36,12 @@ export const LandingCampuses: React.FC = () => {
       badge: "Main Headquarters & Mega Lab",
       branches: [
         {
-          label: "Campus 1 (Downstairs Naturals - Primary)",
+          label: "Sivakasi (Main Branch)",
           address:
             "193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123",
         },
         {
-          label: "Campus 2 (Thiruthangal Road)",
+          label: "Sivakasi (Thiruthangal Road)",
           address:
             "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123",
         },
