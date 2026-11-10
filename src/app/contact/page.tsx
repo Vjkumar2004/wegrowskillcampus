@@ -16,11 +16,11 @@ const contactNumbers = [
 
 const campuses = [
   {
-    name: "Sivakasi — Thiruthangal Road",
+    name: "Sivakasi",
     address: "100A/5, 1st Floor, Thiruthangal Road, Opposite Bell Hotel, IBACO Upstairs, Sivakasi – 626 123",
   },
   {
-    name: "Srivilliputtur",
+    name: "Srivilliputhur",
     address: "129, North Car Street, Opposite Bombay Textiles, Upstairs Pathras Kids & Gift Shop, Srivilliputtur – 626 125",
   },
 ];
@@ -55,19 +55,19 @@ export default function ContactPage() {
     setStatus("submitting");
     setFeedbackMessage("");
 
-    // Prepare WhatsApp message formatted with Markdown & emojis
+    // Prepare WhatsApp message formatted with clean text (no emojis so question mark symbols do not appear)
     const lines = [
-      "🎓 *New Enquiry - WeGrow Skill Campus*",
+      "*New Enquiry - WeGrow Skill Campus*",
       "",
-      `👤 *Name:* ${formData.fullName.trim()}`,
-      `📧 *Email:* ${formData.email.trim()}`,
-      `📞 *Phone:* ${formData.phone.trim()}`,
-      courseOfInterest ? `📚 *Course of Interest:* ${courseOfInterest}` : null,
-      preferredCampus ? `📍 *Preferred Campus:* ${preferredCampus}` : null,
-      preferredMode ? `💻 *Learning Mode:* ${preferredMode}` : null,
-      formData.message.trim() ? `💬 *Message:* ${formData.message.trim()}` : null,
+      `*Name:* ${formData.fullName.trim()}`,
+      `*Email:* ${formData.email.trim()}`,
+      `*Phone:* ${formData.phone.trim()}`,
+      courseOfInterest ? `*Course of Interest:* ${courseOfInterest}` : null,
+      preferredCampus ? `*Preferred Campus:* ${preferredCampus}` : null,
+      preferredMode ? `*Learning Mode:* ${preferredMode}` : null,
+      formData.message.trim() ? `*Message:* ${formData.message.trim()}` : null,
       "",
-      "🌐 *Source:* www.wegrowcampus.in/contact",
+      "*Source:* www.wegrowcampus.in/contact",
     ].filter(Boolean);
 
     const whatsappMessage = lines.join("\n");
@@ -274,9 +274,8 @@ export default function ContactPage() {
                     <label htmlFor="preferredCampus" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">Preferred Campus</label>
                     <select id="preferredCampus" value={preferredCampus} onChange={(event) => setPreferredCampus(event.target.value)} className="w-full px-4 py-2.5 rounded border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue bg-white">
                       <option value="">Select a campus (optional)</option>
-                      <option>Sivakasi — Thiruthangal Road</option>
-                      <option>Srivilliputtur</option>
-                      <option>No preference</option>
+                      <option value="Sivakasi">Sivakasi</option>
+                      <option value="Srivilliputhur">Srivilliputhur</option>
                     </select>
                   </div>
                   <div className="sm:col-span-2">
