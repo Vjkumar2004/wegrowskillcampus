@@ -15,11 +15,11 @@ const sections = [
   { title: "5. Data Security", text: "Describe the security measures actually used to protect personal information. Avoid promising that any internet transmission or storage system is completely secure." },
   { title: "6. Data Retention", text: "State how long personal information is kept, what determines the retention period, and how deletion requests are handled. Insert the institute's actual retention practices and deletion procedures." },
   { title: "7. Cookies and Analytics", text: "List the cookies, analytics tools, consent controls, and third-party services actually used by the website. Remove any tools or practices that do not apply." },
-  { title: "8. Your Privacy Rights", text: "Depending on applicable law, visitors may have rights relating to access, correction, deletion, consent, or other handling of personal information. Provide a monitored privacy contact for requests: [INSERT PRIVACY CONTACT EMAIL]." },
+  { title: "8. Your Privacy Rights", text: "Depending on applicable law, visitors may have rights relating to access, correction, deletion, consent, or other handling of personal information. For privacy-related requests or inquiries, contact us at: enquiry@wegrowcampus.in." },
   { title: "9. Third-Party Websites", text: "The website may link to third-party websites or services. Their privacy practices are governed by their own policies." },
   { title: "10. Children's Privacy", text: "Describe how the institute handles information from children and any authorisation or safeguards used. Do not collect children's information without appropriate authorisation or safeguards where required." },
   { title: "11. Changes to This Policy", text: "When this policy or the institute's practices change, publish the updated version with its revision date." },
-  { title: "12. Contact Us", text: "WeGrow Skill Campus. Address: [INSERT REGISTERED OR OFFICIAL ADDRESS]. Email: [INSERT PRIVACY CONTACT EMAIL]. Phone: [INSERT OFFICIAL PHONE NUMBER]." },
+  { title: "12. Contact Us", text: "WeGrow Skill Campus Pvt. Ltd. Address: 193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123. Email: enquiry@wegrowcampus.in. Phone: +91 93443 37331 / +91 93633 37331." },
 ];
 
 export default function PrivacyPolicyPage() {
@@ -34,9 +34,6 @@ export default function PrivacyPolicyPage() {
       />
       <Container>
         <div className="w-full">
-          <div className="rounded-lg bg-amber-50 border border-amber-200 p-5 mb-8 text-sm text-amber-950 leading-relaxed">
-            <strong>Draft for completion:</strong> This page contains example wording and fields that require the institute&apos;s verified contact details and actual data practices. Complete and review it before relying on it as the campus privacy policy.
-          </div>
           <div className="space-y-4">
             {sections.map((section) => <section key={section.title} className="bg-white rounded-lg border border-brand-border p-6 shadow-subtle"><h2 className="text-lg font-bold text-brand-navy mb-2">{section.title}</h2><p className="text-sm text-brand-textSecondary leading-relaxed">{section.text}</p></section>)}
           </div>

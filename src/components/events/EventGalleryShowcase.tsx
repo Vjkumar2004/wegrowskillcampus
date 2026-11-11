@@ -9,7 +9,6 @@ import {
   ChevronUp,
   X,
   ZoomIn,
-  Images,
   Sparkles,
 } from "lucide-react";
 import {
@@ -206,14 +205,9 @@ export default function EventGalleryShowcase({ initialEvents }: EventGalleryShow
               {/* Event Category Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-gray-100">
                 <div>
-                  <div className="flex items-center gap-2 mb-1.5">
+                  <div className="mb-1.5">
                     <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
                       {event.category}
-                    </span>
-                    <span className="text-gray-300">•</span>
-                    <span className="inline-flex items-center gap-1 text-xs text-brand-textSecondary font-medium">
-                      <Images className="w-3.5 h-3.5" />
-                      {event.photoCount} photos
                     </span>
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-navy">

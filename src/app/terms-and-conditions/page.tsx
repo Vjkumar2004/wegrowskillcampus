@@ -22,7 +22,7 @@ const sections = [
   { title: "12. Privacy", text: "Personal information submitted through the website is handled according to the applicable Privacy Policy and relevant legal requirements." },
   { title: "13. Changes to These Terms", text: "We may revise these Terms and Conditions from time to time. Publish updates with the latest revision date." },
   { title: "14. Governing Law", text: "These Terms and Conditions are intended for an institute operating in India. Have jurisdiction-specific provisions reviewed by a qualified legal professional in light of the institute's registered location and circumstances." },
-  { title: "15. Contact Information", text: "WeGrow Skill Campus. Address: [INSERT OFFICIAL ADDRESS]. Email: [INSERT OFFICIAL EMAIL ADDRESS]. Phone: [INSERT OFFICIAL PHONE NUMBER]." },
+  { title: "15. Contact Information", text: "WeGrow Skill Campus Pvt. Ltd. Address: 193,1A, Ayyappan kovil opposite/ Naturals Salon & Spa Downstairs, Parasakthi Colony, Sivakasi, Tamil Nadu 626123. Email: enquiry@wegrowcampus.in. Phone: +91 93443 37331 / +91 93633 37331." },
 ];
 
 export default function TermsAndConditionsPage() {
@@ -37,9 +37,6 @@ export default function TermsAndConditionsPage() {
       />
       <Container>
         <div className="w-full">
-          <div className="rounded-lg bg-amber-50 border border-amber-200 p-5 mb-8 text-sm text-amber-950 leading-relaxed">
-            <strong>Draft for completion:</strong> Contact details, refund terms, and legal provisions need to be confirmed for the institute. Have this page reviewed before treating it as the final terms of use.
-          </div>
           <div className="space-y-4">
             {sections.map((section) => <section key={section.title} className="bg-white rounded-lg border border-brand-border p-6 shadow-subtle"><h2 className="text-lg font-bold text-brand-navy mb-2">{section.title}</h2><p className="text-sm text-brand-textSecondary leading-relaxed">{section.text}</p></section>)}
           </div>
