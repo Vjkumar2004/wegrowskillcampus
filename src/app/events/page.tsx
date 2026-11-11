@@ -4,6 +4,10 @@ import Container from "@/components/common/Container";
 import Button from "@/components/common/Button";
 import PageHero from "@/components/common/PageHero";
 import EventGalleryShowcase from "@/components/events/EventGalleryShowcase";
+import { getLiveImageKitEvents } from "@/services/imagekitEventsService";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Events & Photo Gallery | WeGrow Skill Campus",
@@ -34,7 +38,9 @@ const eventTypes = [
   },
 ];
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const { events } = await getLiveImageKitEvents(false);
+
   return (
     <div className="bg-brand-bg pb-16 sm:pb-20">
       <PageHero
@@ -75,7 +81,7 @@ export default function EventsPage() {
           </div>
 
           {/* Dedicated Interactive Event Gallery */}
-          <EventGalleryShowcase />
+          <EventGalleryShowcase initialEvents={events} />
 
           {/* Learning in action highlight */}
           <section className="my-12 grid items-center gap-7 overflow-hidden rounded-[26px] border border-blue-100 bg-blue-50 p-6 sm:p-8 lg:grid-cols-[0.9fr_1.1fr]">

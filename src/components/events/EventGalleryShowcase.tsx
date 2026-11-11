@@ -11,7 +11,6 @@ import {
   ZoomIn,
   Images,
   Sparkles,
-  RotateCw,
 } from "lucide-react";
 import {
   EVENTS_DATA,
@@ -28,9 +27,12 @@ function resolveUrl(path: string): string {
   return `${cdnEndpoint.replace(/\/$/, "")}${normalizedPath}`;
 }
 
-export default function EventGalleryShowcase() {
-  const [events, setEvents] = useState<EventItem[]>(EVENTS_DATA);
-  const [isSyncing, setIsSyncing] = useState<boolean>(false);
+interface EventGalleryShowcaseProps {
+  initialEvents?: EventItem[];
+}
+
+export default function EventGalleryShowcase({ initialEvents }: EventGalleryShowcaseProps) {
+  const [events, setEvents] = useState<EventItem[]>(initialEvents && initialEvents.length > 0 ? initialEvents : EVENTS_DATA);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [expandedEvents, setExpandedEvents] = useState<Record<string, boolean>>({});
   const [lightboxState, setLightboxState] = useState<{
@@ -38,27 +40,38 @@ export default function EventGalleryShowcase() {
     photoIndex: number;
   } | null>(null);
 
-  // Auto-sync with ImageKit API
-  const syncWithImageKit = useCallback(async (force = false) => {
+  // Silently check for newly uploaded photos in ImageKit in the background
+  const refreshEventsSilently = useCallback(async () => {
     try {
-      setIsSyncing(true);
-      const res = await fetch(`/api/events${force ? "?refresh=true" : ""}`);
+      const res = await fetch(`/api/events?t=${Date.now()}`, {
+        cache: "no-store",
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.success && Array.isArray(data.events) && data.events.length > 0) {
           setEvents(data.events);
         }
       }
-    } catch (err) {
-      console.warn("[EventGalleryShowcase] Dynamic sync error, using cached data:", err);
-    } finally {
-      setIsSyncing(false);
+    } catch {
+      // Quietly keep current state on any network blip
     }
   }, []);
 
   useEffect(() => {
-    syncWithImageKit();
-  }, [syncWithImageKit]);
+    // When user returns or focuses back on tab, quietly update photos
+    const handleFocus = () => {
+      refreshEventsSilently();
+    };
+
+    window.addEventListener("focus", handleFocus);
+    // Silent periodic refresh every 30 seconds
+    const interval = setInterval(refreshEventsSilently, 30000);
+
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+      clearInterval(interval);
+    };
+  }, [refreshEventsSilently]);
 
   const toggleExpand = (eventId: string) => {
     setExpandedEvents((prev) => ({
@@ -138,33 +151,6 @@ export default function EventGalleryShowcase() {
           Explore photographic glimpses from conferences, festivals, recruitment drives,
           leadership conclaves, and hands-on workshops across our campus.
         </p>
-
-        {/* Live Auto-Sync Status Indicator */}
-        <div className="mt-4 flex items-center justify-center">
-          <button
-            type="button"
-            onClick={() => syncWithImageKit(true)}
-            disabled={isSyncing}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-slate-600 hover:text-brand-navy hover:border-brand-orange/40 hover:bg-orange-50/50 shadow-xs transition-all disabled:opacity-60 cursor-pointer"
-            title="Click to check ImageKit cloud for new photos"
-          >
-            <span
-              className={`w-2 h-2 rounded-full ${
-                isSyncing ? "bg-amber-500 animate-ping" : "bg-emerald-500"
-              }`}
-            />
-            <span>
-              {isSyncing
-                ? "Checking ImageKit for new photos..."
-                : "Auto-synced with ImageKit"}
-            </span>
-            <RotateCw
-              className={`w-3.5 h-3.5 text-slate-400 ${
-                isSyncing ? "animate-spin text-brand-orange" : ""
-              }`}
-            />
-          </button>
-        </div>
       </div>
 
       {/* Category Filter Tabs */}

@@ -127,10 +127,10 @@ function detectCategory(folderName: string): string {
   return "Campus Life";
 }
 
-// In-memory cache for fast repeated requests
+// In-memory cache for fast repeated requests (15s TTL so newly uploaded photos appear almost immediately)
 let cachedEvents: EventItem[] | null = null;
 let lastCacheTime = 0;
-const CACHE_TTL_MS = 60 * 1000; // 60 seconds
+const CACHE_TTL_MS = 15 * 1000; // 15 seconds
 
 export async function getLiveImageKitEvents(forceRefresh = false): Promise<{ events: EventItem[]; source: "live" | "cache" | "fallback" }> {
   const now = Date.now();
@@ -172,9 +172,15 @@ export async function getLiveImageKitEvents(forceRefresh = false): Promise<{ eve
     // Group files by folder under /events/
     const byFolder: Record<string, ImageKitFileItem[]> = {};
     eventFiles.forEach((f) => {
-      const parts = f.filePath.split("/");
+      const parts = f.filePath.split("/").filter(Boolean); // e.g. ["events", "workshops", "img.jpg"]
       if (parts.length >= 3) {
-        const folder = parts[2];
+        // e.g. events/workshops/photo.jpg -> folder is "workshops"
+        const folder = parts[1];
+        if (!byFolder[folder]) byFolder[folder] = [];
+        byFolder[folder].push(f);
+      } else if (parts.length === 2) {
+        // e.g. events/photo.jpg -> group into "Campus_Highlights"
+        const folder = "Campus_Highlights";
         if (!byFolder[folder]) byFolder[folder] = [];
         byFolder[folder].push(f);
       }
